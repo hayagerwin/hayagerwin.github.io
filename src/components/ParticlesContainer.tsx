@@ -1,11 +1,10 @@
 "use client";
+import React, { useCallback } from "react";
 import { Particles } from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import React, { useCallback } from "react";
 
 const ParticlesContainer = () => {
   const particlesInit = useCallback(async (engine: any) => {
-    console.log(engine);
     await loadFull(engine);
   }, []);
 

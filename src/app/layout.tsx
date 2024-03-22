@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Layout } from "@/components";
+import { Animate, Layout } from "@/components";
 
 export const metadata: Metadata = {
   title: "Erwin Hayag - Web Portfolio",
@@ -16,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Layout>{children}</Layout>
+        <Layout>
+          <Animate>{children}</Animate>
+        </Layout>
       </body>
     </html>
   );

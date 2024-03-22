@@ -1,8 +1,10 @@
+export { default as Animate } from "./Animate";
 export { default as Avatar } from "./Avatar";
 export { default as Bulb } from "./Bulb";
 export { default as CardLeft } from "./CardLeft";
 export { default as CardRight } from "./CardRight";
 export { default as Circles } from "./Circles";
+export { default as FrozenRoute } from "./FrozenRoute";
 export { default as Header } from "./Header";
 export { default as Layout } from "./Layout";
 export { default as Nav } from "./Nav";

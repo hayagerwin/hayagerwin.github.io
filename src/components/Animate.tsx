@@ -1,16 +1,15 @@
 "use client";
-import { Transition } from "@/components";
-import { ReactNode } from "react";
+import { FrozenRoute, Transition } from "@/components";
 import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-export default function Template({ children }: { children: ReactNode }) {
+export default function Animate({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   return (
     <AnimatePresence mode="wait">
       <motion.div key={pathname} className="h-full">
         <Transition />
-        {children}
+        <FrozenRoute>{children}</FrozenRoute>
       </motion.div>
     </AnimatePresence>
   );
