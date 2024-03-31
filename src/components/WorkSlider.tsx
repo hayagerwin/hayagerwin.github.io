@@ -5,7 +5,6 @@ import { Pagination } from "swiper/modules";
 import Image from "next/image";
 import { BsArrowRight } from "react-icons/bs";
 import "swiper/css";
-import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 // data
