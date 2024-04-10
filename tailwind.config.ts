@@ -16,9 +16,11 @@ const config: Config = {
     },
     extend: {
       colors: {
-        primary: "#2B2D42",
-        secondary: "#8D99AE",
-        accent: "#EF233C",
+        primary: "#073B4C",
+        secondary: "#118AB2",
+        accent: "#08DDAC",
+        highlight: "#FFD166",
+        pop: "#EF476F",
       },
       backgroundImage: {
         explosion: 'url("/bg-explosion.png")',

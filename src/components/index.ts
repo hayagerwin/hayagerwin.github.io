@@ -9,6 +9,7 @@ export { default as Header } from "./Header";
 export { default as Layout } from "./Layout";
 export { default as Nav } from "./Nav";
 export { default as ParticlesContainer } from "./ParticlesContainer";
+export { default as Projects } from "./Projects";
 export { default as ProjectsBtn } from "./ProjectsBtn";
 export { default as ServiceSlider } from "./ServiceSlider";
 export { default as Socials } from "./Socials";

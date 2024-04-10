@@ -2,11 +2,10 @@
 import { Bulb, Circles, ServiceSlider } from "@/components";
 import { fadeIn } from "@/utils/variants";
 import { motion } from "framer-motion";
-export const serviceData = [];
 
 const Services = () => {
   return (
-    <div className="h-full bg-primary/30 py-36 flex items-center">
+    <div className="h-full bg-primary/60 py-36 flex items-center">
       <Circles />
       <div className="container mx-auto">
         <div className="flex flex-col xl:flex-row gap-x-8">
@@ -16,8 +15,7 @@ const Services = () => {
               My services <span className="text-accent">.</span>
             </motion.h2>
             <motion.p variants={fadeIn("up", 0.4)} initial="hidden" animate="show" exit="hidden" className="mb-4 max-w-[400px] mx-auto lg:mx-0">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda, accusantium. Dolorem aspernatur eligendi sapiente minus expedita distinctio
-              magnam inventore eum!
+              Crafting tailored solutions to precisely meet your unique needs, ensuring seamless integration and unparalleled user satisfaction.
             </motion.p>
           </div>
           {/* Slider */}

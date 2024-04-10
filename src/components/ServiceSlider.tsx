@@ -2,37 +2,37 @@
 // icons
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Pagination } from "swiper/modules";
-import { RxCrop, RxPencil2, RxDesktop, RxReader, RxRocket, RxArrowTopRight } from "react-icons/rx";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/pagination";
+import { RiAppsLine, RiComputerLine, RiFileTextLine, RiLayoutMasonryLine, RiShoppingCartLine } from "react-icons/ri";
+import { RxArrowTopRight } from "react-icons/rx";
 
-// data
 const serviceData = [
   {
-    icon: <RxCrop />,
-    title: "Branding",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: <RiComputerLine />,
+    title: "Website Development",
+    description: "Crafting websites with HTML, CSS, JavaScript, and other technologies.",
   },
   {
-    icon: <RxPencil2 />,
-    title: "Design",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: <RiAppsLine />,
+    title: "Web App Development",
+    description: "Building web apps with intuitive UI and functionalities.",
   },
   {
-    icon: <RxDesktop />,
-    title: "Development",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: <RiShoppingCartLine />,
+    title: "E-commerce Solutions",
+    description: "Developing online stores with secure payment gateways.",
   },
   {
-    icon: <RxReader />,
-    title: "Copywriting",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: <RiFileTextLine />,
+    title: "Content Management Systems (CMS)",
+    description: "Customizing CMS for content updates.",
   },
   {
-    icon: <RxRocket />,
-    title: "SEO",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    icon: <RiLayoutMasonryLine />,
+    title: "Responsive Web Design",
+    description: "Crafting websites that dynamically adapt to different devices.",
   },
 ];
 
@@ -58,7 +58,7 @@ const ServiceSlider = () => {
       {serviceData.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <div className="bg-purple-600 bg-opacity-15 max-h-full rounded-lg px-6 py-8 flex sm:flex-col gap-x-6 sm:gap-x-0 group cursor-pointer hover:bg-purple-500 hover:bg-opacity-15 transition-all duration-300">
+            <div className="bg-secondary/30 bg-opacity-15 max-h-full rounded-lg px-6 py-8 flex sm:flex-col gap-x-6 sm:gap-x-0 group cursor-pointer hover:bg-secondary/60 hover:bg-opacity-15 transition-all duration-300">
               {/* Icon */}
               <div className="text-4xl text-accent mb-4">{item.icon}</div>
               {/* Title */}

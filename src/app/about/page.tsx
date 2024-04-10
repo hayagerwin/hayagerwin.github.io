@@ -58,15 +58,11 @@ const aboutData: AboutDataItem[] = [
     ],
   },
   {
-    title: "awards",
+    title: "certificate",
     info: [
       {
-        title: "Webby Awards - Honoree",
-        stage: "2011 - 2012",
-      },
-      {
-        title: "Adobe Design Achievement Awards - Finalist",
-        stage: "2009 - 2010",
+        title: "Google IO/Extended Cavite",
+        stage: "2019",
       },
     ],
   },
@@ -74,16 +70,12 @@ const aboutData: AboutDataItem[] = [
     title: "experience",
     info: [
       {
-        title: "UX/UI Designer - XYZ Company",
-        stage: "2012 - 2023",
+        title: "Intern - Mater Dei Academy Tagaytay",
+        stage: "2019",
       },
       {
-        title: "Web Developer - ABC Agency",
-        stage: "2010 - 2012",
-      },
-      {
-        title: "Intern - DEF Corporation",
-        stage: "2008 - 2010",
+        title: "Web Developer - Freelance",
+        stage: "2020 - 2022",
       },
     ],
   },
@@ -91,16 +83,16 @@ const aboutData: AboutDataItem[] = [
     title: "credentials",
     info: [
       {
-        title: "Web Development - ABC University, LA, CA",
-        stage: "2011",
+        title: "Dasmariñas Elementary School",
+        stage: "2005 - 2011",
       },
       {
-        title: "Computer Science Diploma - AV Technical Institute",
-        stage: "2009",
+        title: "Langkaan II National High School",
+        stage: "2011 - 2015",
       },
       {
-        title: "Certified Graphic Designer - ABC Institute, Los Angeles, CA",
-        stage: "2006",
+        title: "BS in Computer Science - Cavite State University",
+        stage: "2015 - 2020",
       },
     ],
   },
@@ -130,7 +122,7 @@ const About = () => {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="h-full bg-primary/30 py-32 text-center xl:text-left">
+    <div className="h-full bg-primary/60 py-32 text-center xl:text-left">
       <Circles />
       <motion.div variants={fadeIn("right", 0.2)} initial="hidden" animate="show" exit="hidden" className="hidden xl:flex absolute bottom-0 -left-[370px]">
         <Avatar />
@@ -139,9 +131,9 @@ const About = () => {
         {/* Text */}
         <div className="flex-1 flex flex-col justify-center">
           <motion.h2 variants={fadeIn("right", 0.2)} initial="hidden" animate="show" exit="hidden" className="h2">
-            Captivating <span className="text-accent">stories</span>
+            Crafting <span className="text-accent">Digital Experiences</span>
             <br />
-            birth magnificent designs.
+            with Purpose
           </motion.h2>
           <motion.p
             variants={fadeIn("right", 0.4)}
@@ -149,8 +141,8 @@ const About = () => {
             animate="show"
             exit="hidden"
             className="max-w-[500px] mx-auto xl:mx-0 mb-6 xl:mb-12 px-2 xl:px-0">
-            10 years ago, I began freelancing as a developer. Since then, I&apos;ve done remote work for agencies, consulted for startups, and collaborated on
-            digital products for business and consumer use.
+            With over 3 years of full-stack web development experience, I&apos;ve crafted dynamic web applications and intuitive user interfaces. My freelance
+            journey has led me to diverse digital projects, where I&apos;ve collaborated with clients to bring their visions to life.
           </motion.p>
           {/* Counters */}
           <motion.div
@@ -162,31 +154,31 @@ const About = () => {
             <div className="flex flex-1 xl:gap-x-6">
               {/* Experience */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={10} duration={5} /> +
+                <div className="text-2xl xl:text-4xl font-extrabold text-highlight mb-2">
+                  <CountUp start={0} end={3} duration={5} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">Years of Experience</div>
               </div>
               {/* Clients */}
               <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={250} duration={5} /> +
+                <div className="text-2xl xl:text-4xl font-extrabold text-highlight mb-2">
+                  <CountUp start={0} end={10} duration={5} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">Satisfied Clients</div>
               </div>
               {/* Projects */}
-              <div className="relative flex-1 after:w-[1px] after:h-full after:bg-white/10 after:absolute after:top-0 after:right-0">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={650} duration={5} /> +
+              <div className="relative flex-1">
+                <div className="text-2xl xl:text-4xl font-extrabold text-highlight mb-2">
+                  <CountUp start={0} end={20} duration={5} /> +
                 </div>
                 <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">Finished Projects</div>
               </div>
               {/* Awards */}
               <div className="relative flex-1">
-                <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
+                {/* <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
                   <CountUp start={0} end={8} duration={5} /> +
                 </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">Winning Awards</div>
+                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">Winning Awards</div> */}
               </div>
             </div>
           </motion.div>

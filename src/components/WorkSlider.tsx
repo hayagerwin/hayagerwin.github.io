@@ -13,20 +13,20 @@ const workSlides = {
     {
       images: [
         {
-          title: "title",
-          path: "/thumb1.jpg",
+          title: "Lucky Star Grocery Store",
+          path: "/thumb1.png",
         },
         {
           title: "title",
-          path: "/thumb2.jpg",
+          path: "/thumb2.png",
         },
         {
           title: "title",
-          path: "/thumb3.jpg",
+          path: "/thumb2.png",
         },
         {
-          title: "title",
-          path: "/thumb4.jpg",
+          title: "Lucky Star Grocery Store",
+          path: "/thumb1.png",
         },
       ],
     },
@@ -73,7 +73,7 @@ const WorkSlider = () => {
                       {/* Image */}
                       <Image src={image.path} width={500} height={300} alt="" />
                       {/* Overlay Gradient */}
-                      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#e838cc] to-[#4a22bd] opacity-0 group-hover:opacity-80 transition-all duration-700"></div>
+                      <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#2652a3] to-[#22bdb0] opacity-0 group-hover:opacity-80 transition-all duration-700"></div>
                       {/* Title */}
                       <div className="absolute bottom-0 translate-y-full group-hover:-translate-y-10 group-hover:xl:-translate-y-20 transition-all duration-300">
                         <div className="flex items-center gap-x-2 text-[13px] tracking-[0.2em]">
