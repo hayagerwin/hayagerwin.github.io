@@ -5,21 +5,7 @@ import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/variants";
 import { FaAnglesRight } from "react-icons/fa6";
 import { useState } from "react";
-
-const projectData = [
-  {
-    title: "Lynn Villamor Dental Clinic",
-    image: "/thumb1.png",
-    path: "/work/lynn-villamor-dental-clinic",
-    category: "Reservation",
-  },
-  {
-    title: "Lucky Star Grocery Store",
-    image: "/thumb2.png",
-    path: "/work/lucky-star-grocery-store",
-    category: "E-commerce",
-  },
-];
+import { projectData } from "@/data/projects";
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
@@ -29,7 +15,11 @@ const Projects = () => {
       <div className="relative h-full w-full pr-6">
         {/* Image Group */}
         {projectData.map((project, index) => (
-          <div
+          <motion.div
+            variants={fadeIn("right", 0.2)}
+            initial="hidden"
+            animate="show"
+            exit="hidden"
             key={index}
             className={`absolute h-full w-11/12 overflow-hidden rounded-tr-3xl`}
           >
@@ -43,20 +33,20 @@ const Projects = () => {
               className="relative h-full w-full"
             >
               <Image
-                src={project.image}
+                src={project.cover}
                 alt=""
                 className="absolute inset-0 h-full w-full object-cover"
                 width={1920}
                 height={1080}
               />
             </motion.div>
-          </div>
+          </motion.div>
         ))}
       </div>
       {/* RIGHT */}
       <div className="h-full w-full flex-col pl-6 pr-60">
         <motion.div
-          variants={fadeIn("down", 0.2)}
+          variants={fadeIn("left", 0.2)}
           initial="hidden"
           animate="show"
           exit="hidden"
@@ -73,7 +63,7 @@ const Projects = () => {
           {projectData.map((project, index) => (
             <motion.li
               key={index}
-              variants={fadeIn("down", 0.2 + index * 0.1)}
+              variants={fadeIn("left", 0.2 + index * 0.1)}
               initial="hidden"
               animate="show"
               exit="hidden"
@@ -93,7 +83,7 @@ const Projects = () => {
                 >
                   <FaAnglesRight />
                 </motion.div>
-                <Link href={project.path} className="w-full">
+                <Link href={`/projects/${project.slug}`} className="w-full">
                   <div className="flex w-full justify-between py-6">
                     <div className="w-full ">
                       <motion.h4
