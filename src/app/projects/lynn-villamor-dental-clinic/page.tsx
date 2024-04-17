@@ -166,7 +166,7 @@ const ProjectCollection = () => {
           ))}
         </div>
         {/* Project Footer */}
-        <div className="mx-8 lg:mx-24 xl:mx-60">
+        <div className="mx-8 mb-16 sm:mb-0 lg:mx-24 xl:mx-60">
           <div className="w-full pb-20 pt-6 xl:pb-6">
             <hr />
             <Link href={`/projects/${projectData[nextIndex].slug}`}>

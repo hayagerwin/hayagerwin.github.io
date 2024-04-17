@@ -10,9 +10,9 @@ import { projectData } from "@/data/projects";
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   return (
-    <div className="z-30 flex h-[100vh] w-full flex-row pt-60">
+    <div className="z-30 flex h-[100vh] w-full flex-col-reverse items-center justify-center pt-32 lg:flex-row lg:pt-60">
       {/* LEFT */}
-      <div className="relative h-full w-full pr-6">
+      <div className="relative h-full w-full pr-0 lg:pr-6">
         {/* Image Group */}
         {projectData.map((project, index) => (
           <motion.div
@@ -44,7 +44,7 @@ const Projects = () => {
         ))}
       </div>
       {/* RIGHT */}
-      <div className="h-full w-full flex-col pl-6 pr-60">
+      <div className="h-full w-full flex-col pl-6 pr-6 lg:pr-60">
         <motion.div
           variants={fadeIn("left", 0.2)}
           initial="hidden"
@@ -52,14 +52,14 @@ const Projects = () => {
           exit="hidden"
         >
           <div className="flex items-baseline">
-            <h2 className="h2 m-0 w-full overflow-ellipsis text-left ">
+            <h2 className="h4 sm:h2 m-0 w-full overflow-ellipsis text-left">
               Projects
             </h2>
             <h5 className="text-2xl">{projectData.length}</h5>
           </div>
           <hr />
         </motion.div>
-        <ul className="h-full">
+        <ul className="h-auto lg:h-full">
           {projectData.map((project, index) => (
             <motion.li
               key={index}
@@ -84,19 +84,21 @@ const Projects = () => {
                   <FaAnglesRight />
                 </motion.div>
                 <Link href={`/projects/${project.slug}`} className="w-full">
-                  <div className="flex w-full justify-between py-6">
+                  <div className="flex w-full flex-col justify-between py-6 sm:flex-row">
                     <div className="w-full ">
                       <motion.h4
                         initial={{ x: -15 }}
                         animate={{ x: hoveredIndex === index ? 10 : -15 }}
                         transition={{ duration: 0.4 }}
-                        className="mr-6 overflow-hidden overflow-ellipsis whitespace-nowrap text-2xl font-bold"
+                        className="mr-0 overflow-hidden overflow-ellipsis whitespace-nowrap text-xl font-bold sm:text-2xl lg:mr-6"
                       >
                         {project.title}
                       </motion.h4>
                     </div>
-                    <div className="w-full text-right">
-                      <p className="text-xl font-light">{project.category}</p>
+                    <div className="w-full text-left sm:text-right">
+                      <p className="text-base font-light sm:text-xl">
+                        {project.category}
+                      </p>
                     </div>
                   </div>
                 </Link>

@@ -151,7 +151,7 @@ const About = () => {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="h-full bg-primary/60 py-32 text-center xl:text-left">
+    <div className="scrollbar-hidden h-full overflow-y-scroll bg-primary/60 py-32 text-center xl:text-left">
       <Circles />
       <motion.div
         variants={fadeIn("right", 0.2)}
@@ -162,7 +162,7 @@ const About = () => {
       >
         <Avatar />
       </motion.div>
-      <div className="container mx-auto flex h-full flex-col items-center xl:flex-row">
+      <div className="container mx-auto flex h-full flex-col items-center xl:flex-row mb-48">
         {/* Text */}
         <div className="flex flex-1 flex-col justify-center">
           <motion.h2
@@ -170,7 +170,7 @@ const About = () => {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="h2"
+            className="h4"
           >
             Crafting <span className="text-accent">Digital Experiences</span>
             <br />
@@ -181,7 +181,7 @@ const About = () => {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="mx-auto mb-6 max-w-[500px] px-2 xl:mx-0 xl:mb-12 xl:px-0"
+            className="mx-auto mb-6 max-w-[500px] px-2 text-sm sm:text-base xl:mx-0 xl:mb-12 xl:px-0"
           >
             With over 3 years of full-stack web development experience,
             I&apos;ve crafted dynamic web applications and intuitive user
