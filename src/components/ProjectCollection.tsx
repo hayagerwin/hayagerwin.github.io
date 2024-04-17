@@ -7,7 +7,7 @@ import { Project, projectData } from "@/data/projects";
 import Link from "next/link";
 import { FaAnglesRight } from "react-icons/fa6";
 
-const WorkProjects = ({ params }: { params: { slug: string } }) => {
+const ProjectCollection = ({ params }: { params: { slug: string } }) => {
   const [isNextProjectHovered, setIsNextProjectHovered] = useState(false);
 
   const project: Project | undefined = projectData.find(
@@ -212,4 +212,4 @@ const WorkProjects = ({ params }: { params: { slug: string } }) => {
   );
 };
 
-export default WorkProjects;
+export default ProjectCollection;
