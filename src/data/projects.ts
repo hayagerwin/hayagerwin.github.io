@@ -44,7 +44,7 @@ export const projectData: Project[] = [
     slug: "lucky-star-grocery-store",
     title: "Lucky Star Grocery Store",
     cover: "/assets/images/lucky-star/cover.png",
-    category: "Reservation",
+    category: "E-commerce",
     year: 2021,
     team: ["Erwin Hayag"],
     client: ["Nenejj Store"],
