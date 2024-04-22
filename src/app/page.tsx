@@ -8,7 +8,7 @@ const Home = () => {
     <div className="h-full">
       {/* Particles Effect */}
       <ParticlesContainer />
-      <div className="h-full w-full bg-gradient-to-r from-primary/10 via-black/30 to-black/10">
+      <div className="h-full w-full">
         <div className="container mx-auto flex h-full flex-col justify-center text-center xl:pt-40 xl:text-left">
           {/* Title  */}
           <motion.h1

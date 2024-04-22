@@ -149,6 +149,11 @@ const renderStageOrIcons = (item: InfoType) => {
 
 const About = () => {
   const [index, setIndex] = useState(0);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   return (
     <div className="h-full py-32 text-center xl:text-left">
@@ -170,25 +175,35 @@ const About = () => {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="h4"
+            className="h4 sm:h3"
           >
-            Crafting <span className="text-accent">Digital Experiences</span>
+            Crafting <br />{" "}
+            <span className="text-accent">Digital Experiences</span>
             <br />
             with Purpose
           </motion.h2>
-          <motion.p
-            variants={fadeIn("right", 0.4)}
-            initial="hidden"
-            animate="show"
-            exit="hidden"
-            className="mx-auto mb-6 max-w-[500px] px-2 text-sm sm:text-base xl:mx-0 xl:mb-12 xl:px-0"
-          >
-            With over 3 years of full-stack web development experience,
-            I&apos;ve crafted dynamic web applications and intuitive user
-            interfaces. My freelance journey has led me to diverse digital
-            projects, where I&apos;ve collaborated with clients to bring their
-            visions to life.
-          </motion.p>
+          <div className="mx-auto mb-6 max-w-[500px] px-2 text-sm sm:text-base xl:mx-0 xl:mb-12 xl:px-0">
+            <motion.p
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 50 }}
+              className={`mb-1 ${
+                !isExpanded ? "line-clamp-2 xl:line-clamp-none" : "" // Tailwind's line clamp or similar effect
+              }`}
+            >
+              With over 3 years of full-stack web development experience,
+              I&apos;ve crafted dynamic web applications and intuitive user
+              interfaces. My freelance journey has led me to diverse digital
+              projects, where I&apos;ve collaborated with clients to bring their
+              visions to life.
+            </motion.p>
+            <button
+              onClick={toggleExpand}
+              className="rounded-3xl border-2 border-solid border-white/60 px-3 py-1 text-sm text-white/60 xl:hidden"
+            >
+              {isExpanded ? "See Less" : "See More"}
+            </button>
+          </div>
           {/* Counters */}
           <motion.div
             variants={fadeIn("right", 0.6)}
@@ -200,7 +215,7 @@ const About = () => {
             <div className="flex flex-1 xl:gap-x-6">
               {/* Experience */}
               <div className="relative flex-1 after:absolute after:right-0 after:top-0 after:h-full after:w-[1px] after:bg-white/10">
-                <div className="mb-2 text-2xl font-extrabold text-highlight xl:text-4xl">
+                <div className="text-highlight mb-2 text-2xl font-extrabold xl:text-4xl">
                   <CountUp start={0} end={3} duration={5} /> +
                 </div>
                 <div className="max-w-[100px] text-xs uppercase leading-[1.4] tracking-[1px]">
@@ -209,7 +224,7 @@ const About = () => {
               </div>
               {/* Clients */}
               <div className="relative flex-1 after:absolute after:right-0 after:top-0 after:h-full after:w-[1px] after:bg-white/10">
-                <div className="mb-2 text-2xl font-extrabold text-highlight xl:text-4xl">
+                <div className="text-highlight mb-2 text-2xl font-extrabold xl:text-4xl">
                   <CountUp start={0} end={10} duration={5} /> +
                 </div>
                 <div className="max-w-[100px] text-xs uppercase leading-[1.4] tracking-[1px]">
@@ -218,7 +233,7 @@ const About = () => {
               </div>
               {/* Projects */}
               <div className="relative flex-1">
-                <div className="mb-2 text-2xl font-extrabold text-highlight xl:text-4xl">
+                <div className="text-highlight mb-2 text-2xl font-extrabold xl:text-4xl">
                   <CountUp start={0} end={20} duration={5} /> +
                 </div>
                 <div className="max-w-[100px] text-xs uppercase leading-[1.4] tracking-[1px]">
@@ -226,7 +241,7 @@ const About = () => {
                 </div>
               </div>
               {/* Awards */}
-              <div className="relative flex-1">
+              <div className="relative flex-1 hidden xl:block">
                 {/* <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
                   <CountUp start={0} end={8} duration={5} /> +
                 </div>
@@ -241,7 +256,7 @@ const About = () => {
           initial="hidden"
           animate="show"
           exit="hidden"
-          className="flex h-[480px] w-full flex-col xl:max-w-[48%]"
+          className="flex h-full w-full flex-col xl:max-w-[48%]"
         >
           <div className="mx-auto mb-4 flex gap-x-4 xl:mx-0 xl:gap-x-8">
             {aboutData.map((item, itemIndex) => {
@@ -251,7 +266,7 @@ const About = () => {
                   className={`${
                     index === itemIndex &&
                     "text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300"
-                  } relative cursor-pointer capitalize after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-8 after:bg-white xl:text-lg`}
+                  } relative cursor-pointer text-sm capitalize after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-8 after:bg-white sm:text-base xl:text-lg`}
                   onClick={() => setIndex(itemIndex)}
                 >
                   {item.title}
@@ -259,12 +274,12 @@ const About = () => {
               );
             })}
           </div>
-          <div className="flex flex-col items-center gap-y-2 py-2 xl:items-start xl:gap-y-4 xl:py-6">
+          <div className="scrollbar-hidden mb-24 flex flex-col items-center gap-y-2 overflow-y-auto py-2 text-sm sm:text-base xl:mb-0 xl:items-start xl:gap-y-4 xl:py-6">
             {aboutData[index].info.map((item, itemIndex) => {
               return (
                 <div
                   key={itemIndex}
-                  className="flex max-w-max flex-1 flex-col items-center gap-x-2 text-white/60 md:flex-row"
+                  className="flex h-full max-w-max flex-1 flex-col items-center gap-x-2 text-white/60 md:flex-row"
                 >
                   {/* Title */}
                   <div className="mb-2 font-light md:mb-0">{item.title}</div>

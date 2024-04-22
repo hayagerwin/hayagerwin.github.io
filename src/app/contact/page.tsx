@@ -5,26 +5,26 @@ import { BsArrowRight } from "react-icons/bs";
 
 const Contact = () => {
   return (
-    <div className="h-full">
+    <div className="mb-2 mt-8 h-full xl:mb-0">
       <div className="container mx-auto flex h-full items-center justify-center py-32 text-center xl:text-left">
         <div className="flex w-full max-w-[700px] flex-col">
           {/* Text */}
-          <motion.h2
+          <motion.h3
             variants={fadeIn("up", 0.2)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="h2 mb-12 text-center"
+            className="h3 mb-12 text-center"
           >
             Let&apos;s <span className="text-accent">connect.</span>
-          </motion.h2>
+          </motion.h3>
           {/* Form */}
           <motion.form
             variants={fadeIn("up", 0.4)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="mx-auto flex w-full flex-1 flex-col gap-6"
+            className="mx-auto flex w-full flex-1 flex-col gap-3 xl:gap-6"
           >
             <div className="flex w-full gap-x-6">
               <input type="text" placeholder="name" className="input" />

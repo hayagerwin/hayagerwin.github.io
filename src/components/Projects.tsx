@@ -10,9 +10,9 @@ import { projectData } from "@/data/projects";
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   return (
-    <div className="z-30 flex h-full w-full flex-col-reverse items-center justify-center pt-32 lg:flex-row lg:pt-60">
+    <div className="z-30 flex h-full w-full flex-col-reverse items-center justify-center pt-32 lg:flex-row lg:pt-60 xl:overflow-hidden">
       {/* LEFT */}
-      <div className="fixed bottom-0 left-0 h-[75%] w-[45%]">
+      <div className="relative bottom-0 left-0 hidden h-full w-full xl:block">
         {/* Image Group */}
         {projectData.map((project, index) => (
           <motion.div
@@ -21,7 +21,7 @@ const Projects = () => {
             animate="show"
             exit="hidden"
             key={index}
-            className={`absolute h-full w-11/12 overflow-hidden rounded-tr-3xl`}
+            className={`absolute h-full w-full overflow-hidden rounded-tr-3xl`}
           >
             <motion.div
               initial={{ scale: 1, opacity: 0 }}
@@ -43,9 +43,8 @@ const Projects = () => {
           </motion.div>
         ))}
       </div>
-      <div className="h-full w-full"></div>
       {/* RIGHT */}
-      <div className="h-full w-full flex-col pl-6 pr-6 lg:pr-60">
+      <div className="h-full w-full flex-col pl-6 pr-6 lg:px-32">
         <motion.div
           variants={fadeIn("left", 0.2)}
           initial="hidden"
