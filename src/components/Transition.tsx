@@ -20,7 +20,7 @@ const Transition = () => {
   return (
     <>
       <motion.div
-        className="fixed top-0 bottom-0 right-full w-screen h-screen z-30 bg-[#03232E]"
+        className="bg-slider1 fixed bottom-0 right-full top-0 z-30 h-screen w-screen"
         variants={transitionVariants}
         initial="initial"
         animate="animate"
@@ -28,7 +28,7 @@ const Transition = () => {
         transition={{ delay: 0.2, duration: 0.6, ease: "easeInOut" }}
       />
       <motion.div
-        className="fixed top-0 bottom-0 right-full w-screen h-screen z-20 bg-[#052F3B]"
+        className="bg-slider2 fixed bottom-0 right-full top-0 z-20 h-screen w-screen"
         variants={transitionVariants}
         initial="initial"
         animate="animate"
@@ -36,7 +36,7 @@ const Transition = () => {
         transition={{ delay: 0.4, duration: 0.6, ease: "easeInOut" }}
       />
       <motion.div
-        className="fixed top-0 bottom-0 right-full w-screen h-screen z-10 bg-[#06394B]"
+        className="bg-slider3 fixed bottom-0 right-full top-0 z-10 h-screen w-screen"
         variants={transitionVariants}
         initial="initial"
         animate="animate"

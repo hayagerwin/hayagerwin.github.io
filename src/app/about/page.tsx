@@ -151,7 +151,7 @@ const About = () => {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="scrollbar-hidden h-full overflow-y-scroll bg-primary/60 py-32 text-center xl:text-left">
+    <div className="h-full py-32 text-center xl:text-left">
       <Circles />
       <motion.div
         variants={fadeIn("right", 0.2)}
@@ -162,7 +162,7 @@ const About = () => {
       >
         <Avatar />
       </motion.div>
-      <div className="container mx-auto flex h-full flex-col items-center xl:flex-row mb-48">
+      <div className="container mx-auto mb-48 flex h-full flex-col items-center xl:flex-row">
         {/* Text */}
         <div className="flex flex-1 flex-col justify-center">
           <motion.h2

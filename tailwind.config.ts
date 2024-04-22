@@ -1,7 +1,11 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./src/pages/**/*.{js,ts,jsx,tsx,mdx}", "./src/components/**/*.{js,ts,jsx,tsx,mdx}", "./src/app/**/*.{js,ts,jsx,tsx,mdx}"],
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   theme: {
     container: {
       padding: {
@@ -16,11 +20,9 @@ const config: Config = {
     },
     extend: {
       colors: {
-        primary: "#073B4C",
-        secondary: "#118AB2",
-        accent: "#08DDAC",
-        highlight: "#FFD166",
-        pop: "#EF476F",
+        primary: "#29335C",
+        secondary: "#ADFCF9",
+        accent: "#05FFC1",
       },
       backgroundImage: {
         explosion: 'url("/bg-explosion.png")',

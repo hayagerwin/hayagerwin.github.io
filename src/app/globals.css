@@ -8,14 +8,14 @@
 .swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
 .swiper-pagination-horizontal.swiper-pagination-bullets
   .swiper-pagination-bullet {
-  background-color: #ef233c;
+  background-color: #05ffc1;
 }
 
 .swiper-button-next:after,
 .swiper-button-prev:after,
 .swiper-button-next:after,
 .swiper-rtl .swiper-button-prev:after {
-  color: #ef233c;
+  color: #05ffc1;
 }
 
 /* Prevent text selection for the entire document */
@@ -40,7 +40,7 @@ body {
     @apply overflow-hidden bg-secondary leading-relaxed;
   }
   .page {
-    @apply h-screen w-full overflow-hidden;
+    @apply scrollbar-hidden h-screen w-full overflow-hidden overflow-y-scroll;
   }
   .h1 {
     @apply mb-8 text-[35px] font-semibold leading-tight md:text-[60px] md:leading-[1.3];
@@ -73,6 +73,15 @@ body {
   }
   .textarea {
     @apply h-[180px] w-full resize-none rounded-lg p-6 capitalize;
+  }
+  .bg-slider1 {
+    @apply bg-[#29335C];
+  }
+  .bg-slider2 {
+    @apply bg-[#39436C];
+  }
+  .bg-slider3 {
+    @apply bg-[#49537C];
   }
 }
 

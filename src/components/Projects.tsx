@@ -10,9 +10,9 @@ import { projectData } from "@/data/projects";
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(-1);
   return (
-    <div className="z-30 flex h-[100vh] w-full flex-col-reverse items-center justify-center pt-32 lg:flex-row lg:pt-60">
+    <div className="z-30 flex h-full w-full flex-col-reverse items-center justify-center pt-32 lg:flex-row lg:pt-60">
       {/* LEFT */}
-      <div className="relative h-full w-full pr-0 lg:pr-6">
+      <div className="fixed bottom-0 left-0 h-[75%] w-[45%]">
         {/* Image Group */}
         {projectData.map((project, index) => (
           <motion.div
@@ -43,6 +43,7 @@ const Projects = () => {
           </motion.div>
         ))}
       </div>
+      <div className="h-full w-full"></div>
       {/* RIGHT */}
       <div className="h-full w-full flex-col pl-6 pr-6 lg:pr-60">
         <motion.div

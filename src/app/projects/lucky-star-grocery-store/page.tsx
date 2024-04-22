@@ -21,14 +21,14 @@ const ProjectCollection = () => {
 
   if (!project) {
     return (
-      <div className="flex h-full w-full items-center justify-center bg-primary/60">
+      <div className="page flex h-full w-full items-center justify-center">
         <div className="h4 text-center">Project not found</div>
       </div>
     );
   }
 
   return (
-    <div className="scrollbar-hidden h-full overflow-y-scroll bg-primary/60">
+    <div className="page h-full">
       <div className="relative h-auto">
         {/* Header */}
         <div className="relative mx-8 mt-24 flex flex-col md:mx-0 md:mt-0 md:h-full xl:mx-60">

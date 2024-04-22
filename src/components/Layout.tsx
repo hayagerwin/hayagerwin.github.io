@@ -1,3 +1,4 @@
+"use client";
 import { Poppins } from "next/font/google";
 import { Header, Nav, TopLeftImg } from "@/components";
 
@@ -13,13 +14,13 @@ const Layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div>
-      <div className={`page bg-site text-white bg-cover bg-no-repeat ${poppins.variable} font-poppins relative`}>
+    <div
+      className={`page bg-site bg-cover bg-no-repeat text-white ${poppins.variable} relative bg-fixed font-poppins`}
+    >
         <TopLeftImg />
         <Nav />
         <Header />
         {children}
-      </div>
     </div>
   );
 };

@@ -5,8 +5,8 @@ import { BsArrowRight } from "react-icons/bs";
 
 const Contact = () => {
   return (
-    <div className="h-full bg-primary/60">
-      <div className="scrollbar-hidden container mx-auto flex h-full items-center justify-center overflow-y-scroll py-32 text-center xl:text-left">
+    <div className="h-full">
+      <div className="container mx-auto flex h-full items-center justify-center py-32 text-center xl:text-left">
         <div className="flex w-full max-w-[700px] flex-col">
           {/* Text */}
           <motion.h2
@@ -32,7 +32,7 @@ const Contact = () => {
             </div>
             <input type="text" placeholder="subject" className="input" />
             <textarea placeholder="message" className="textarea"></textarea>
-            <button className="btn group flex max-w-[170px] items-center justify-center overflow-hidden rounded-full border border-white/50 px-8 transition-all duration-300 hover:border-accent">
+            <button className="btn group flex max-w-[170px] items-center justify-center rounded-full border border-white/50 px-8 transition-all duration-300 hover:border-accent">
               <span className="transition-all duration-500 group-hover:-translate-y-[120%] group-hover:opacity-0">
                 Lets talk
               </span>

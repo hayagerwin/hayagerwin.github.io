@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 
 const Services = () => {
   return (
-    <div className="scrollbar-hidden flex h-full items-center overflow-y-scroll bg-primary/60 py-36">
+    <div className="flex h-full items-center py-36">
       <Circles />
       <div className="container mx-auto">
         <div className="flex flex-col gap-x-8 xl:flex-row">
