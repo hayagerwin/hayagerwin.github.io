@@ -9,6 +9,11 @@ import { FaAnglesRight } from "react-icons/fa6";
 
 const ProjectCollection = () => {
   const [isNextProjectHovered, setIsNextProjectHovered] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   const project: Project | undefined = projectData.find(
     (item) => item.slug === "lynn-villamor-dental-clinic",
@@ -127,8 +132,20 @@ const ProjectCollection = () => {
             </table>
           </div>
           {/* Project Description */}
-          <div className="w-full pl-0 md:w-[50%] md:pl-6">
-            <p>{project.description}</p>
+          <div className="flex w-full flex-col items-center pl-0 md:w-[50%] md:pl-6">
+            <p
+              className={`mb-1 ${
+                !isExpanded ? "line-clamp-3 md:line-clamp-none" : ""
+              }`}
+            >
+              {project.description}
+            </p>
+            <button
+              onClick={toggleExpand}
+              className="rounded-3xl border-2 border-solid border-white/60 px-3 py-1 text-sm text-white/60 md:hidden"
+            >
+              {isExpanded ? "See Less" : "See More"}
+            </button>
           </div>
         </motion.div>
         {/* Content */}
