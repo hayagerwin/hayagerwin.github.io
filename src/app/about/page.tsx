@@ -14,9 +14,14 @@ import CountUp from "react-countup";
 import { FaPhp } from "react-icons/fa6";
 
 //  Data
+interface IconsData {
+  icon: JSX.Element[] | any;
+  text: string;
+}
+
 interface SkillInfo {
   title: string;
-  icons: JSX.Element[];
+  iconsData: IconsData[];
 }
 
 interface AwardInfo {
@@ -47,21 +52,48 @@ const aboutData: AboutDataItem[] = [
     info: [
       {
         title: "Web Development",
-        icons: [
-          <FaHtml5 key="html5" />,
-          <FaCss3 key="css3" />,
-          <FaJs key="js" />,
-          <FaPhp key="php" />,
-          <FaReact key="react" />,
-          <SiNextdotjs key="nextjs" />,
-          <SiLaravel key="laravel" />,
+        iconsData: [
+          {
+            icon: <FaHtml5 key="html5" />,
+            text: "HTML5",
+          },
+          {
+            icon: <FaCss3 key="css3" />,
+            text: "CSS3",
+          },
+          {
+            icon: <FaJs key="js" />,
+            text: "Javascript",
+          },
+          {
+            icon: <FaPhp key="php" />,
+            text: "PHP",
+          },
+          {
+            icon: <FaReact key="react" />,
+            text: "React.js",
+          },
+          {
+            icon: <SiNextdotjs key="nextjs" />,
+            text: "Next.js",
+          },
+          {
+            icon: <SiLaravel key="laravel" />,
+            text: "Laravel",
+          },
         ],
       },
       {
         title: "UI/UX Design",
-        icons: [
-          <SiAdobeillustrator key="illustrator" />,
-          <SiAdobephotoshop key="photoshop" />,
+        iconsData: [
+          {
+            icon: <SiAdobeillustrator key="illustrator" />,
+            text: "Adobe Illustrator",
+          },
+          {
+            icon: <SiAdobephotoshop key="photoshop" />,
+            text: "Adobe Photoshop",
+          },
         ],
       },
     ],
@@ -103,7 +135,7 @@ const aboutData: AboutDataItem[] = [
         stage: "2020 - 2022",
       },
       {
-        title: "Rav Prints - Freelance",
+        title: "RavPrints - Freelance",
         stage: "2022 - 2024",
       },
     ],
@@ -112,16 +144,16 @@ const aboutData: AboutDataItem[] = [
     title: "credentials",
     info: [
       {
-        title: "Dasmariñas Elementary School",
-        stage: "2005 - 2011",
+        title: "BS in Computer Science - Cavite State University",
+        stage: "2015 - 2020",
       },
       {
         title: "Langkaan II National High School",
         stage: "2011 - 2015",
       },
       {
-        title: "BS in Computer Science - Cavite State University",
-        stage: "2015 - 2020",
+        title: "Dasmariñas Elementary School",
+        stage: "2005 - 2011",
       },
     ],
   },
@@ -134,11 +166,14 @@ const renderStageOrIcons = (item: InfoType) => {
   } else {
     // If it's a SkillInfo
     return (
-      <div className="flex gap-x-4">
-        {item.icons?.map((icon, iconIndex) => {
+      <div className="flex flex-wrap gap-x-4">
+        {item.iconsData?.map((iconObj, iconIndex) => {
           return (
-            <div key={iconIndex} className="text-2xl text-white">
-              {icon}
+            <div key={iconIndex} className="group relative text-2xl text-white">
+              {iconObj.icon}
+              <span className="invisible absolute bottom-full left-1/2 z-50 -translate-x-1/2 transform rounded-md bg-gray-800 p-1 text-center text-sm text-white opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:opacity-100">
+                {iconObj.text}
+              </span>
             </div>
           );
         })}
@@ -241,7 +276,7 @@ const About = () => {
                 </div>
               </div>
               {/* Awards */}
-              <div className="relative flex-1 hidden xl:block">
+              <div className="relative hidden flex-1 xl:block">
                 {/* <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
                   <CountUp start={0} end={8} duration={5} /> +
                 </div>
