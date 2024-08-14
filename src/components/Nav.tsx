@@ -11,11 +11,11 @@ export const navData = [
   { name: "about", path: "/about", icon: <HiUser /> },
   { name: "services", path: "/services", icon: <HiRectangleGroup /> },
   { name: "projects", path: "/projects", icon: <HiViewColumns /> },
-  {
-    name: "contact",
-    path: "/contact",
-    icon: <HiEnvelope />,
-  },
+  // {
+  //   name: "contact",
+  //   path: "/contact",
+  //   icon: <HiEnvelope />,
+  // },
 ];
 
 const Nav = () => {

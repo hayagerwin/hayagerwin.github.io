@@ -31,6 +31,7 @@ interface AwardInfo {
 
 interface ExperienceInfo {
   title: string;
+  role: string;
   stage: string;
 }
 
@@ -127,15 +128,18 @@ const aboutData: AboutDataItem[] = [
     title: "experience",
     info: [
       {
-        title: "Intern - Mater Dei Academy Tagaytay",
+        title: "Mater Dei Academy Tagaytay",
+        role: "Internship",
         stage: "2019",
       },
       {
-        title: "Web Developer - Freelance",
+        title: "Freelance",
+        role: "Full Stack Web Developer",
         stage: "2020 - 2022",
       },
       {
-        title: "RavPrints - Freelance",
+        title: "Ravprints Digital Printing Services",
+        role: "Freelance Web Developer",
         stage: "2022 - 2024",
       },
     ],
@@ -169,7 +173,7 @@ const renderStageOrIcons = (item: InfoType) => {
       <div className="flex flex-wrap gap-x-4">
         {item.iconsData?.map((iconObj, iconIndex) => {
           return (
-            <div key={iconIndex} className="group relative text-2xl text-white">
+            <div key={iconIndex} className="group relative text-2xl text-white cursor-pointer">
               {iconObj.icon}
               <span className="invisible absolute bottom-full left-1/2 z-50 -translate-x-1/2 transform rounded-md bg-gray-800 p-1 text-center text-sm text-white opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:opacity-100">
                 {iconObj.text}
@@ -312,16 +316,24 @@ const About = () => {
           <div className="scrollbar-hidden mb-24 flex flex-col items-center gap-y-2 overflow-y-auto py-2 text-sm sm:text-base xl:mb-0 xl:items-start xl:gap-y-4 xl:py-6">
             {aboutData[index].info.map((item, itemIndex) => {
               return (
-                <div
-                  key={itemIndex}
-                  className="flex h-full max-w-max flex-1 flex-col items-center gap-x-2 text-white/60 md:flex-row"
-                >
-                  {/* Title */}
-                  <div className="mb-2 font-light md:mb-0">{item.title}</div>
-                  <div className="hidden md:flex">-</div>
-                  {/* Stage or Icons */}
-                  {renderStageOrIcons(item)}
-                </div>
+                <>
+                  {aboutData[index].title === "experience" && (
+                    <>
+                      <div className="flex h-full max-w-max flex-1 flex-col items-center gap-x-2 text-white md:flex-row -mb-4">{"role" in item && item.role}</div> 
+                    </>
+                  )}
+                  <div
+                    key={itemIndex}
+                    className="flex h-full max-w-max flex-1 flex-col items-center gap-x-2 text-white/60 md:flex-row"
+                  >
+                    {/* Title */}
+
+                    <div className="mb-2 font-light md:mb-0">{item.title}</div>
+                    <div className="hidden md:flex">-</div>
+                    {/* Stage or Icons */}
+                    {renderStageOrIcons(item)}
+                  </div>
+                </>
               );
             })}
           </div>

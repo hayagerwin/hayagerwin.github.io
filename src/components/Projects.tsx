@@ -8,7 +8,7 @@ import { useState } from "react";
 import { projectData } from "@/data/projects";
 
 const Projects = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(-1);
+  const [hoveredIndex, setHoveredIndex] = useState(0);
   return (
     <div className="z-30 flex h-full w-full flex-col-reverse items-center justify-center pt-32 lg:flex-row lg:pt-60 xl:overflow-hidden">
       {/* LEFT */}
@@ -71,7 +71,7 @@ const Projects = () => {
               <div
                 className="flex items-center"
                 onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(-1)}
+                // onMouseLeave={() => setHoveredIndex(-1)}
               >
                 <motion.div
                   initial={{ x: -35, opacity: 0 }}
@@ -90,7 +90,7 @@ const Projects = () => {
                         initial={{ x: -15 }}
                         animate={{ x: hoveredIndex === index ? 10 : -15 }}
                         transition={{ duration: 0.4 }}
-                        className="mr-0 overflow-hidden overflow-ellipsis whitespace-nowrap text-xl font-bold sm:text-2xl lg:mr-6"
+                        className={`mr-0 overflow-hidden overflow-ellipsis whitespace-nowrap text-xl font-bold sm:text-2xl lg:mr-6`}
                       >
                         {project.title}
                       </motion.h4>
