@@ -45,9 +45,14 @@ const config: Config = {
         circles: 'url("/bg-circles.png")',
         circleStar: 'url("/circle-star.svg")',
         site: 'url("/site-bg.svg")',
+        'grid-pattern': 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.15) 1px, transparent 0)',
+      },
+      backgroundSize: {
+        'grid-pattern': '20px 20px',
       },
       animation: {
-        "spin-slow": "spin 6s linear infinite",
+        "spin-slow": "spin 8s linear infinite",
+        "pulse-slow": "pulse 3s ease-in-out infinite",
       },
       fontFamily: {
         poppins: [`var(--font-poppins)`, "sans-serif"],

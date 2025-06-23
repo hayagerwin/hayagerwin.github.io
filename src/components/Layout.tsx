@@ -18,11 +18,6 @@ const Layout = ({
     <div
       className={`page bg-site bg-cover bg-no-repeat text-white ${poppins.variable} relative bg-fixed font-poppins`}
     >
-      {/* Skip to content link for accessibility */}
-      <a href="#main-content" className="skip-link">
-        Skip to main content
-      </a>
-
       {/* Background decorative elements */}
       <TopLeftImg />
 

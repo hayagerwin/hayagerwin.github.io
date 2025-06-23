@@ -12,7 +12,6 @@ export { default as Layout } from "./Layout";
 export { default as LoadingSpinner } from "./LoadingSpinner";
 export { default as Nav } from "./Nav";
 export { default as OptimizedImage } from "./OptimizedImage";
-export { default as ParticlesContainer } from "./ParticlesContainer";
 export { default as Projects } from "./Projects";
 export { default as ProjectsBtn } from "./ProjectsBtn";
 export { default as ServiceSlider } from "./ServiceSlider";
@@ -21,3 +20,8 @@ export { default as TestimonialSlider } from "./TestimonialSlider";
 export { default as TopLeftImg } from "./TopLeftImg";
 export { default as Transition } from "./Transition";
 export { default as WorkSlider } from "./WorkSlider";
+
+// UI Components
+export { TextGenerateEffect } from "./ui/text-generate-effect";
+export { TypewriterEffect, TypewriterEffectSmooth } from "./ui/typewriter-effect";
+export { DynamicTypewriter } from "./ui/dynamic-typewriter";

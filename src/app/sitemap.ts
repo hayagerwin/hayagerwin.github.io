@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next'
 import { projectData } from '@/data/projects'
- 
+
+export const dynamic = 'force-static'
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://hayagerwin.github.io'
   

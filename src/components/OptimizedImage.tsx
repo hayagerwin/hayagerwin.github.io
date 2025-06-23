@@ -5,8 +5,8 @@ import { useState } from "react";
 interface OptimizedImageProps {
   src: string;
   alt: string;
-  width: number;
-  height: number;
+  width?: number;
+  height?: number;
   className?: string;
   priority?: boolean;
   placeholder?: "blur" | "empty";
@@ -46,7 +46,7 @@ const OptimizedImage = ({
     return (
       <div
         className={`bg-dark-secondary/50 flex items-center justify-center ${className}`}
-        style={{ width, height }}
+        style={{ width: width || 'auto', height: height || 'auto' }}
         role="img"
         aria-label={`Failed to load image: ${alt}`}
       >
@@ -66,12 +66,10 @@ const OptimizedImage = ({
       <Image
         src={src}
         alt={alt}
-        width={fill ? undefined : width}
-        height={fill ? undefined : height}
-        fill={fill}
+        {...(fill ? { fill: true } : { width: width!, height: height! })}
         priority={priority}
         placeholder={placeholder}
-        blurDataURL={blurDataURL}
+        {...(blurDataURL && { blurDataURL })}
         sizes={sizes}
         quality={quality}
         onLoad={handleLoad}
