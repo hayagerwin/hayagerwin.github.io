@@ -166,16 +166,24 @@ const aboutData: AboutDataItem[] = [
 const renderStageOrIcons = (item: InfoType) => {
   if ("stage" in item) {
     // If it's an AwardInfo, ExperienceInfo, or CredentialInfo
-    return <div>{item.stage}</div>;
+    return (
+      <div className="text-right">
+        <span className="inline-block bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium">
+          {item.stage}
+        </span>
+      </div>
+    );
   } else {
     // If it's a SkillInfo
     return (
-      <div className="flex flex-wrap gap-x-4">
+      <div className="flex flex-wrap gap-3 justify-center md:justify-end">
         {item.iconsData?.map((iconObj, iconIndex) => {
           return (
-            <div key={iconIndex} className="group relative text-2xl text-white cursor-pointer">
-              {iconObj.icon}
-              <span className="invisible absolute bottom-full left-1/2 z-50 -translate-x-1/2 transform rounded-md bg-gray-800 p-1 text-center text-sm text-white opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:opacity-100">
+            <div key={iconIndex} className="group relative">
+              <div className="flex items-center justify-center w-10 h-10 bg-dark-secondary rounded-lg text-accent text-xl hover:bg-accent hover:text-dark transition-all duration-300 cursor-pointer">
+                {iconObj.icon}
+              </div>
+              <span className="invisible absolute bottom-full left-1/2 z-50 -translate-x-1/2 transform rounded-md bg-dark px-2 py-1 text-center text-xs text-text-primary opacity-0 transition duration-200 ease-in-out group-hover:visible group-hover:opacity-100 whitespace-nowrap">
                 {iconObj.text}
               </span>
             </div>
@@ -195,7 +203,7 @@ const About = () => {
   };
 
   return (
-    <div className="h-full py-32 text-center xl:text-left">
+    <div className="h-full py-16 px-4 sm:py-20 text-center xl:text-left">
       <Circles />
       <motion.div
         variants={fadeIn("right", 0.2)}
@@ -214,31 +222,32 @@ const About = () => {
             initial="hidden"
             animate="show"
             exit="hidden"
-            className="h4 sm:h3"
+            className="h3 text-center xl:text-left"
           >
-            Crafting <br />{" "}
+            Crafting{" "}
             <span className="text-accent">Digital Experiences</span>
             <br />
-            with Purpose
+            with <span className="text-highlight">Purpose</span>
           </motion.h2>
-          <div className="mx-auto mb-6 max-w-[500px] px-2 text-sm sm:text-base xl:mx-0 xl:mb-12 xl:px-0">
+          <div className="mx-auto mb-4 max-w-[500px] px-2 xl:mx-0 xl:mb-8 xl:px-0">
             <motion.p
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: 50 }}
-              className={`mb-1 ${
-                !isExpanded ? "line-clamp-2 xl:line-clamp-none" : "" // Tailwind's line clamp or similar effect
+              className={`text-base text-center xl:text-left mb-3 ${
+                !isExpanded ? "line-clamp-3 xl:line-clamp-none" : ""
               }`}
             >
-              With over 3 years of full-stack web development experience,
-              I&apos;ve crafted dynamic web applications and intuitive user
-              interfaces. My freelance journey has led me to diverse digital
-              projects, where I&apos;ve collaborated with clients to bring their
-              visions to life.
+              With over <span className="text-accent font-semibold">3 years</span> of full-stack web development experience,
+              I specialize in creating <span className="text-highlight">exceptional digital experiences</span> that combine
+              cutting-edge technology with user-centered design. My expertise spans modern frameworks like{" "}
+              <span className="text-accent">React</span>, <span className="text-accent">Next.js</span>, and{" "}
+              <span className="text-accent">Node.js</span>, enabling me to deliver comprehensive solutions
+              from concept to deployment.
             </motion.p>
             <button
               onClick={toggleExpand}
-              className="rounded-3xl border-2 border-solid border-white/60 px-3 py-1 text-sm text-white/60 xl:hidden"
+              className="btn-secondary text-sm xl:hidden"
             >
               {isExpanded ? "See Less" : "See More"}
             </button>
@@ -251,40 +260,33 @@ const About = () => {
             exit="hidden"
             className="mx-auto mb-8 hidden md:flex md:max-w-xl xl:mx-0 xl:max-w-none"
           >
-            <div className="flex flex-1 xl:gap-x-6">
+            <div className="grid grid-cols-1 gap-3 xs:grid-cols-2 sm:gap-4 xl:grid-cols-3 xl:gap-6">
               {/* Experience */}
-              <div className="relative flex-1 after:absolute after:right-0 after:top-0 after:h-full after:w-[1px] after:bg-white/10">
-                <div className="text-highlight mb-2 text-2xl font-extrabold xl:text-4xl">
-                  <CountUp start={0} end={3} duration={5} /> +
+              <div className="card text-center py-4">
+                <div className="text-accent mb-1 text-xl font-bold sm:text-2xl xl:text-3xl">
+                  <CountUp start={0} end={3} duration={3} />+
                 </div>
-                <div className="max-w-[100px] text-xs uppercase leading-[1.4] tracking-[1px]">
-                  Years of Experience
+                <div className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  Years Experience
                 </div>
               </div>
               {/* Clients */}
-              <div className="relative flex-1 after:absolute after:right-0 after:top-0 after:h-full after:w-[1px] after:bg-white/10">
-                <div className="text-highlight mb-2 text-2xl font-extrabold xl:text-4xl">
-                  <CountUp start={0} end={10} duration={5} /> +
+              <div className="card text-center py-4">
+                <div className="text-success mb-1 text-xl font-bold sm:text-2xl xl:text-3xl">
+                  <CountUp start={0} end={10} duration={3} />+
                 </div>
-                <div className="max-w-[100px] text-xs uppercase leading-[1.4] tracking-[1px]">
-                  Satisfied Clients
+                <div className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  Happy Clients
                 </div>
               </div>
               {/* Projects */}
-              <div className="relative flex-1">
-                <div className="text-highlight mb-2 text-2xl font-extrabold xl:text-4xl">
-                  <CountUp start={0} end={20} duration={5} /> +
+              <div className="card text-center py-4 xs:col-span-2 xl:col-span-1">
+                <div className="text-highlight mb-1 text-xl font-bold sm:text-2xl xl:text-3xl">
+                  <CountUp start={0} end={20} duration={3} />+
                 </div>
-                <div className="max-w-[100px] text-xs uppercase leading-[1.4] tracking-[1px]">
-                  Finished Projects
+                <div className="text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  Projects Completed
                 </div>
-              </div>
-              {/* Awards */}
-              <div className="relative hidden flex-1 xl:block">
-                {/* <div className="text-2xl xl:text-4xl font-extrabold text-accent mb-2">
-                  <CountUp start={0} end={8} duration={5} /> +
-                </div>
-                <div className="text-xs uppercase tracking-[1px] leading-[1.4] max-w-[100px]">Winning Awards</div> */}
               </div>
             </div>
           </motion.div>
@@ -297,43 +299,44 @@ const About = () => {
           exit="hidden"
           className="flex h-full w-full flex-col xl:max-w-[48%]"
         >
-          <div className="mx-auto mb-4 flex gap-x-4 xl:mx-0 xl:gap-x-8">
+          <div className="mx-auto mb-6 flex flex-wrap justify-center gap-2 xl:mx-0 xl:gap-x-4">
             {aboutData.map((item, itemIndex) => {
               return (
-                <div
+                <button
                   key={itemIndex}
                   className={`${
-                    index === itemIndex &&
-                    "text-accent after:w-[100%] after:bg-accent after:transition-all after:duration-300"
-                  } relative cursor-pointer text-sm capitalize after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-8 after:bg-white sm:text-base xl:text-lg`}
+                    index === itemIndex
+                      ? "bg-accent text-dark"
+                      : "bg-dark-secondary/50 text-text-secondary hover:bg-dark-secondary hover:text-text-primary active:bg-dark-secondary"
+                  } px-3 py-2 rounded-lg text-xs font-medium capitalize transition-all duration-300 xs:px-4 xs:text-sm sm:text-base xl:text-lg xl:px-6 xl:py-3`}
                   onClick={() => setIndex(itemIndex)}
                 >
                   {item.title}
-                </div>
+                </button>
               );
             })}
           </div>
-          <div className="scrollbar-hidden mb-24 flex flex-col items-center gap-y-2 overflow-y-auto py-2 text-sm sm:text-base xl:mb-0 xl:items-start xl:gap-y-4 xl:py-6">
-            {aboutData[index].info.map((item, itemIndex) => {
+          <div className="scrollbar-hidden mb-24 flex flex-col items-center gap-y-3 overflow-y-auto py-4 xl:mb-0 xl:items-start xl:gap-y-6 xl:py-6">
+            {aboutData[index]?.info.map((item, itemIndex) => {
               return (
-                <>
-                  {aboutData[index].title === "experience" && (
-                    <>
-                      <div className="flex h-full max-w-max flex-1 flex-col items-center gap-x-2 text-white md:flex-row -mb-4">{"role" in item && item.role}</div> 
-                    </>
-                  )}
-                  <div
-                    key={itemIndex}
-                    className="flex h-full max-w-max flex-1 flex-col items-center gap-x-2 text-white/60 md:flex-row"
-                  >
-                    {/* Title */}
-
-                    <div className="mb-2 font-light md:mb-0">{item.title}</div>
-                    <div className="hidden md:flex">-</div>
-                    {/* Stage or Icons */}
-                    {renderStageOrIcons(item)}
+                <div
+                  key={itemIndex}
+                  className="card w-full"
+                >
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+                      {/* Title */}
+                      <div className="mb-3 md:mb-0">
+                        <h6 className="h6 mb-1">{item.title}</h6>
+                        {aboutData[index]?.title === "experience" && "role" in item && (
+                          <p className="text-sm text-text-muted">{item.role}</p>
+                        )}
+                      </div>
+                      {/* Stage or Icons */}
+                      <div className="flex-shrink-0">
+                        {renderStageOrIcons(item)}
+                      </div>
+                    </div>
                   </div>
-                </>
               );
             })}
           </div>

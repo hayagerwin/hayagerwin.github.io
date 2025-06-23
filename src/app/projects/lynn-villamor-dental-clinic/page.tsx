@@ -6,6 +6,7 @@ import { bounceIn, fadeIn } from "@/utils/variants";
 import { Project, projectData } from "@/data/projects";
 import Link from "next/link";
 import { FaAnglesRight } from "react-icons/fa6";
+import { generateProjectStructuredData } from "@/utils/structured-data";
 
 const ProjectCollection = () => {
   const [isNextProjectHovered, setIsNextProjectHovered] = useState(false);
@@ -32,9 +33,15 @@ const ProjectCollection = () => {
     );
   }
 
+  const structuredData = generateProjectStructuredData(project);
+
   return (
-    <div className="page h-full">
-      <div className="relative h-auto">
+    <div className="page h-full overflow-y-auto">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <div className="relative min-h-full py-16 px-4">
         {/* Header */}
         <div className="relative mx-8 mt-24 flex flex-col md:mx-0 md:mt-0 md:h-full xl:mx-60">
           <motion.div
@@ -128,6 +135,53 @@ const ProjectCollection = () => {
                     </ul>
                   </td>
                 </tr>
+
+                <tr>
+                  <td>
+                    <h6 className="h6">Technologies</h6>
+                  </td>
+                  <td>
+                    <ul>
+                      {project.technologies.map((tech, index) => (
+                        <li key={index}>{tech}</li>
+                      ))}
+                    </ul>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <h6 className="h6">Status</h6>
+                  </td>
+                  <td>
+                    <div className="flex items-center gap-2">
+                      <span className={`inline-block w-2 h-2 rounded-full ${
+                        project.status === 'deployed' ? 'bg-green-500' :
+                        project.status === 'in-development' ? 'bg-yellow-500' :
+                        'bg-blue-500'
+                      }`}></span>
+                      <span className="capitalize">{project.status.replace('-', ' ')}</span>
+                    </div>
+                  </td>
+                </tr>
+
+                {project.liveUrl && (
+                  <tr>
+                    <td>
+                      <h6 className="h6">Live Demo</h6>
+                    </td>
+                    <td>
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-accent hover:text-accent/80 transition-colors duration-200"
+                      >
+                        View Live Project →
+                      </a>
+                    </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
@@ -183,47 +237,49 @@ const ProjectCollection = () => {
           ))}
         </div>
         {/* Project Footer */}
-        <div className="mx-8 mb-16 sm:mb-0 lg:mx-24 xl:mx-60">
-          <div className="w-full pb-20 pt-6 xl:pb-6">
-            <hr />
-            <Link href={`/projects/${projectData[nextIndex].slug}`}>
-              <div
-                className="text-base font-bold uppercase text-white no-underline md:text-xl"
-                onMouseEnter={() => setIsNextProjectHovered(true)}
-                onMouseLeave={() => setIsNextProjectHovered(false)}
-              >
-                <div className="flex justify-between py-6">
-                  <div className="flex items-center ">
-                    <motion.div
-                      initial={{ x: -35, opacity: 0 }}
-                      animate={{
-                        x: isNextProjectHovered ? 0 : -35,
-                        opacity: isNextProjectHovered ? 1 : 0,
-                      }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      <FaAnglesRight />
-                    </motion.div>
-                    <motion.div
-                      initial={{ x: -15 }}
-                      animate={{ x: isNextProjectHovered ? 10 : -15 }}
-                      transition={{ duration: 0.4 }}
-                    >
-                      Next Project
-                    </motion.div>
-                  </div>
+        {projectData[nextIndex] && (
+          <div className="mx-8 mb-16 sm:mb-0 lg:mx-24 xl:mx-60">
+            <div className="w-full pb-20 pt-6 xl:pb-6">
+              <hr />
+              <Link href={`/projects/${projectData[nextIndex]?.slug || ''}`}>
+                <div
+                  className="text-base font-bold uppercase text-white no-underline md:text-xl"
+                  onMouseEnter={() => setIsNextProjectHovered(true)}
+                  onMouseLeave={() => setIsNextProjectHovered(false)}
+                >
+                  <div className="flex justify-between py-6">
+                    <div className="flex items-center ">
+                      <motion.div
+                        initial={{ x: -35, opacity: 0 }}
+                        animate={{
+                          x: isNextProjectHovered ? 0 : -35,
+                          opacity: isNextProjectHovered ? 1 : 0,
+                        }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        <FaAnglesRight />
+                      </motion.div>
+                      <motion.div
+                        initial={{ x: -15 }}
+                        animate={{ x: isNextProjectHovered ? 10 : -15 }}
+                        transition={{ duration: 0.4 }}
+                      >
+                        Next Project
+                      </motion.div>
+                    </div>
 
-                  <div className="text-right">
-                    <h4 className="">{projectData[nextIndex].title}</h4>
-                    <p className="text-sm font-light text-white/60">
-                      {projectData[nextIndex].category}
-                    </p>
+                    <div className="text-right">
+                      <h4 className="">{projectData[nextIndex]?.title}</h4>
+                      <p className="text-sm font-light text-white/60">
+                        {projectData[nextIndex]?.category}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

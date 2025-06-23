@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import Socials from "./Socials";
 import { motion } from "framer-motion";
@@ -16,18 +15,20 @@ const Header = () => {
       initial="hidden"
       animate={isProjectsRoute ? "hidden" : "show"}
       exit="hidden"
-      className="absolute z-30 flex w-full items-center px-16 xl:h-[90px] xl:px-0"
+      className="absolute z-30 flex w-full items-center px-8 xl:h-[70px] xl:px-0"
+      role="banner"
     >
       <div className="container mx-auto">
-        <div className="flex flex-col items-center justify-between gap-y-6 py-8 lg:flex-row">
-          <Link href={"/"}>
-            <Image
-              src={"/logo.png"}
-              width={220}
-              height={48}
-              alt=""
-              priority={true}
-            />
+        <div className="flex flex-col items-center justify-between gap-y-4 py-6 lg:flex-row">
+          <Link
+            href={"/"}
+            className="focus-visible rounded-lg p-2 transition-all duration-300 hover:scale-105"
+            aria-label="Erwin Hayag - Home"
+          >
+            <h1 className="text-xl md:text-2xl font-bold tracking-tight">
+              <span className="text-white">Erwin</span>{" "}
+              <span className="text-accent">Hayag</span>
+            </h1>
           </Link>
           <Socials />
         </div>

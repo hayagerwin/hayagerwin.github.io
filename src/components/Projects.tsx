@@ -10,7 +10,10 @@ import { projectData } from "@/data/projects";
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0);
   return (
-    <div className="z-30 flex h-full w-full flex-col-reverse items-center justify-center pt-32 lg:flex-row lg:pt-60 xl:overflow-hidden">
+    <section
+      className="z-30 flex h-full w-full flex-col-reverse items-center justify-center px-4 pt-16 sm:pt-20 lg:flex-row lg:pt-32 xl:overflow-hidden"
+      aria-label="Featured projects showcase"
+    >
       {/* LEFT */}
       <div className="relative bottom-0 left-0 hidden h-full w-full xl:block">
         {/* Image Group */}
@@ -44,22 +47,32 @@ const Projects = () => {
         ))}
       </div>
       {/* RIGHT */}
-      <div className="h-full w-full flex-col pl-6 pr-6 lg:px-32">
+      <div className="h-full w-full flex-col px-4 sm:px-6 lg:px-32">
         <motion.div
           variants={fadeIn("left", 0.2)}
           initial="hidden"
           animate="show"
           exit="hidden"
         >
-          <div className="flex items-baseline">
-            <h2 className="h4 sm:h2 m-0 w-full overflow-ellipsis text-left">
-              Projects
-            </h2>
-            <h5 className="text-2xl">{projectData.length}</h5>
+          <div className="flex items-baseline justify-between">
+            <div>
+              <h2 className="h3 m-0 text-left">
+                Featured Projects
+              </h2>
+              <p className="text-text-muted mt-1 text-sm">Showcasing my latest work</p>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="text-accent text-xl font-bold">{projectData.length}</span>
+              <span className="text-text-muted text-xs">Projects</span>
+            </div>
           </div>
-          <hr />
+          <hr className="border-accent/30 my-4" />
         </motion.div>
-        <ul className="h-auto lg:h-full">
+        <ul
+          className="h-auto lg:h-full"
+          role="list"
+          aria-label="Project list"
+        >
           {projectData.map((project, index) => (
             <motion.li
               key={index}
@@ -67,10 +80,12 @@ const Projects = () => {
               initial="hidden"
               animate="show"
               exit="hidden"
+              role="listitem"
             >
               <div
-                className="flex items-center"
+                className="group flex items-center rounded-xl p-3 sm:p-4 transition-all duration-300 hover:bg-dark-secondary/30 active:bg-dark-secondary/50"
                 onMouseEnter={() => setHoveredIndex(index)}
+                onTouchStart={() => setHoveredIndex(index)}
                 // onMouseLeave={() => setHoveredIndex(-1)}
               >
                 <motion.div
@@ -83,22 +98,42 @@ const Projects = () => {
                 >
                   <FaAnglesRight />
                 </motion.div>
-                <Link href={`/projects/${project.slug}`} className="w-full">
-                  <div className="flex w-full flex-col justify-between py-6 sm:flex-row">
-                    <div className="w-full ">
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="w-full focus-visible rounded-lg"
+                  aria-label={`View ${project.title} project details`}
+                >
+                  <div className="flex w-full flex-col justify-between py-3 sm:py-4 sm:flex-row sm:items-center">
+                    <div className="flex-1">
                       <motion.h4
                         initial={{ x: -15 }}
                         animate={{ x: hoveredIndex === index ? 10 : -15 }}
-                        transition={{ duration: 0.4 }}
-                        className={`mr-0 overflow-hidden overflow-ellipsis whitespace-nowrap text-xl font-bold sm:text-2xl lg:mr-6`}
+                        transition={{ duration: 0.3 }}
+                        className="text-base font-bold text-text-primary sm:text-lg lg:text-xl xl:text-2xl mb-1"
                       >
                         {project.title}
                       </motion.h4>
-                    </div>
-                    <div className="w-full text-left sm:text-right">
-                      <p className="text-base font-light sm:text-xl">
+                      <p className="text-xs sm:text-sm text-text-muted mb-2 sm:mb-0">
                         {project.category}
                       </p>
+                      <div className="flex items-center gap-2 mb-2 sm:mb-0">
+                        <span className={`inline-block w-2 h-2 rounded-full ${
+                          project.status === 'deployed' ? 'bg-success' :
+                          project.status === 'in-development' ? 'bg-warning' :
+                          'bg-accent'
+                        }`}></span>
+                        <span className="text-xs text-text-muted capitalize">
+                          {project.status.replace('-', ' ')}
+                        </span>
+                        {project.liveUrl && (
+                          <span className="text-xs text-success ml-2">• Live Demo</span>
+                        )}
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-start sm:items-end">
+                      <span className="text-sm text-accent font-medium">
+                        {project.year}
+                      </span>
                     </div>
                   </div>
                 </Link>
@@ -107,7 +142,7 @@ const Projects = () => {
           ))}
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 

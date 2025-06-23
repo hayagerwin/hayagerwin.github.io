@@ -17,30 +17,35 @@ import { RxArrowTopRight } from "react-icons/rx";
 const serviceData = [
   {
     icon: <RiComputerLine />,
-    title: "Website Development",
+    title: "Full Stack Development",
     description:
-      "Crafting websites with HTML, CSS, JavaScript, and other technologies.",
+      "End-to-end web application development using React, Next.js, Node.js, and modern databases. From concept to deployment with scalable architecture.",
+    technologies: ["React", "Next.js", "Node.js", "TypeScript"],
   },
   {
     icon: <RiAppsLine />,
-    title: "Web App Development",
-    description: "Building web apps with intuitive UI and functionalities.",
+    title: "Progressive Web Apps",
+    description: "Building fast, reliable, and engaging web applications with offline capabilities and native app-like experiences.",
+    technologies: ["PWA", "Service Workers", "Web APIs"],
   },
   {
     icon: <RiShoppingCartLine />,
     title: "E-commerce Solutions",
-    description: "Developing online stores with secure payment gateways.",
+    description: "Complete online store development with secure payment processing, inventory management, and admin dashboards.",
+    technologies: ["Stripe", "PayPal", "MongoDB", "Express"],
   },
   {
     icon: <RiFileTextLine />,
-    title: "Content Management Systems (CMS)",
-    description: "Customizing CMS for content updates.",
+    title: "Healthcare Applications",
+    description: "HIPAA-compliant healthcare platforms with patient management, appointment scheduling, and secure data handling.",
+    technologies: ["HIPAA", "PostgreSQL", "Security"],
   },
   {
     icon: <RiLayoutMasonryLine />,
-    title: "Responsive Web Design",
+    title: "Responsive Design",
     description:
-      "Crafting websites that dynamically adapt to different devices.",
+      "Mobile-first, responsive web designs that provide optimal user experience across all devices and screen sizes.",
+    technologies: ["Tailwind CSS", "Mobile-First", "UX/UI"],
   },
 ];
 
@@ -62,24 +67,38 @@ const ServiceSlider = () => {
         clickable: true,
       }}
       modules={[FreeMode, Pagination]}
-      className="h-[240px] sm:h-[340px]"
+      className="h-[400px] sm:h-[450px]"
     >
       {serviceData.map((item, index) => {
         return (
           <SwiperSlide key={index}>
-            <div className="group flex cursor-pointer gap-x-6 rounded-lg bg-secondary/10 px-6 py-8 transition-all duration-300 hover:bg-secondary/30 hover:bg-opacity-15 sm:flex-col sm:gap-x-0 md:max-h-[85%]">
+            <div className="card-glow group flex cursor-pointer flex-col h-full justify-between">
               {/* Icon */}
-              <div className="mb-4 text-4xl text-accent">{item.icon}</div>
-              {/* Title */}
-              <div className="mb-8">
-                <div className="mb-2 text-lg">{item.title}</div>
-                <p className="max-w-[350px] leading-normal ">
+              <div className="mb-4 text-5xl text-accent group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+
+              {/* Content */}
+              <div className="flex-1">
+                <h3 className="h5 mb-3 group-hover:text-accent transition-colors duration-300">{item.title}</h3>
+                <p className="text-text-secondary leading-relaxed mb-4">
                   {item.description}
                 </p>
+
+                {/* Technologies */}
+                <div className="flex flex-wrap gap-1 mb-4">
+                  {item.technologies.map((tech, techIndex) => (
+                    <span
+                      key={techIndex}
+                      className="bg-accent/10 text-accent px-2 py-1 rounded text-xs font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
+
               {/* Arrow */}
-              <div className="text-3xl">
-                <RxArrowTopRight className="transition-all duration-300 group-hover:rotate-45 group-hover:text-accent" />
+              <div className="flex justify-end">
+                <RxArrowTopRight className="text-2xl text-text-muted group-hover:text-accent group-hover:rotate-45 group-hover:scale-125 transition-all duration-300" />
               </div>
             </div>
           </SwiperSlide>

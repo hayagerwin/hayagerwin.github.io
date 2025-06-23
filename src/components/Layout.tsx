@@ -1,6 +1,7 @@
 "use client";
 import { Poppins } from "next/font/google";
 import { Header, Nav, TopLeftImg } from "@/components";
+import ErrorBoundary from "./ErrorBoundary";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -17,10 +18,26 @@ const Layout = ({
     <div
       className={`page bg-site bg-cover bg-no-repeat text-white ${poppins.variable} relative bg-fixed font-poppins`}
     >
-        <TopLeftImg />
-        <Nav />
-        <Header />
-        {children}
+      {/* Skip to content link for accessibility */}
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
+
+      {/* Background decorative elements */}
+      <TopLeftImg />
+
+      {/* Navigation */}
+      <Nav />
+
+      {/* Header */}
+      <Header />
+
+      {/* Main content */}
+      <main id="main-content" className="focus:outline-none" tabIndex={-1}>
+        <ErrorBoundary>
+          {children}
+        </ErrorBoundary>
+      </main>
     </div>
   );
 };

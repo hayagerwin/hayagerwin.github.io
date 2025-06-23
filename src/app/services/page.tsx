@@ -16,20 +16,37 @@ const Services = () => {
               initial="hidden"
               animate="show"
               exit="hidden"
-              className="h3 sm:h2 xl:mt-8"
+              className="h3 xl:mt-6"
             >
-              My services <span className="text-accent">.</span>
+              Professional <span className="text-accent">Services</span>
             </motion.h2>
             <motion.p
               variants={fadeIn("up", 0.4)}
               initial="hidden"
               animate="show"
               exit="hidden"
-              className="mx-auto mb-4 max-w-[400px] text-sm sm:text-base lg:mx-0"
+              className="text-base mx-auto mb-4 max-w-[450px] lg:mx-0"
             >
-              Crafting tailored solutions to precisely meet your unique needs,
-              ensuring seamless integration and unparalleled user satisfaction.
+              Delivering comprehensive web development solutions that drive business growth.
+              From concept to deployment, I provide end-to-end services tailored to your specific needs.
             </motion.p>
+            <motion.div
+              variants={fadeIn("up", 0.6)}
+              initial="hidden"
+              animate="show"
+              exit="hidden"
+              className="flex flex-wrap gap-2 justify-center lg:justify-start"
+            >
+              <span className="bg-accent/20 text-accent px-3 py-1 rounded-full text-sm font-medium">
+                Full Stack Development
+              </span>
+              <span className="bg-success/20 text-success px-3 py-1 rounded-full text-sm font-medium">
+                E-commerce Solutions
+              </span>
+              <span className="bg-highlight/20 text-highlight px-3 py-1 rounded-full text-sm font-medium">
+                Healthcare Applications
+              </span>
+            </motion.div>
           </div>
           {/* Slider */}
           <motion.div

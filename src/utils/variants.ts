@@ -4,14 +4,14 @@ export const fadeIn = (
 ) => {
   return {
     hidden: {
-      y: direction === "up" ? 80 : direction === "down" ? -80 : 0,
+      y: direction === "up" ? 40 : direction === "down" ? -40 : 0,
       opacity: 0,
-      x: direction === "left" ? 80 : direction === "right" ? -80 : 0,
+      x: direction === "left" ? 40 : direction === "right" ? -40 : 0,
       transition: {
         type: "tween",
-        duration: 1.5,
+        duration: 0.6,
         delay: delay,
-        ease: [0.25, 0.6, 0.3, 0.8],
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
     show: {
@@ -20,9 +20,9 @@ export const fadeIn = (
       opacity: 1,
       transition: {
         type: "tween",
-        duration: 1.4,
+        duration: 0.6,
         delay: delay,
-        ease: [0.25, 0.25, 0.25, 0.75],
+        ease: [0.25, 0.46, 0.45, 0.94],
       },
     },
   };
@@ -31,14 +31,14 @@ export const fadeIn = (
 export const bounceIn = (direction: "up" | "down" | "left" | "right") => {
   return {
     hidden: {
-      y: direction === "up" ? 80 : direction === "down" ? -80 : 0,
+      y: direction === "up" ? 40 : direction === "down" ? -40 : 0,
       opacity: 0,
-      x: direction === "left" ? 80 : direction === "right" ? -80 : 0,
+      x: direction === "left" ? 40 : direction === "right" ? -40 : 0,
       transition: {
         type: "spring",
-        duration: 1.2,
-        bounce: 0.4,
-        delay: 0.2,
+        duration: 0.8,
+        bounce: 0.3,
+        delay: 0.1,
       },
     },
     show: {
@@ -47,9 +47,9 @@ export const bounceIn = (direction: "up" | "down" | "left" | "right") => {
       opacity: 1,
       transition: {
         type: "spring",
-        duration: 1.2,
-        bounce: 0.4,
-        delay: 0.2,
+        duration: 0.8,
+        bounce: 0.3,
+        delay: 0.1,
       },
     },
   };
