@@ -211,13 +211,35 @@ body {
     min-height: 44px;
   }
   .btn-primary {
-    @apply bg-accent text-dark hover:bg-accent/90 hover:shadow-glow active:scale-95;
+    @apply bg-accent text-dark hover:bg-accent/90 hover:shadow-glow active:scale-95 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-dark;
   }
   .btn-secondary {
-    @apply bg-transparent border-2 border-accent text-accent hover:bg-accent hover:text-dark hover:shadow-glow active:scale-95;
+    @apply bg-transparent border-2 border-accent text-accent hover:bg-accent hover:text-dark hover:shadow-glow active:scale-95 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:ring-offset-2 focus:ring-offset-dark;
   }
   .btn-ghost {
-    @apply bg-transparent text-text-primary hover:bg-white/10 active:scale-95;
+    @apply bg-transparent text-text-primary hover:bg-white/10 active:scale-95 focus:outline-none focus:ring-2 focus:ring-white/20 focus:ring-offset-2 focus:ring-offset-dark;
+  }
+
+  /* Consistent button sizes */
+  .btn-sm {
+    @apply h-8 px-3 text-xs xs:h-10 xs:px-4 xs:text-sm;
+    min-height: 32px;
+  }
+  .btn-lg {
+    @apply h-12 px-6 text-base xs:h-14 xs:px-8 xs:text-lg;
+    min-height: 48px;
+  }
+
+  /* Special button variants */
+  .btn-cta {
+    @apply btn-primary relative overflow-hidden;
+  }
+  .btn-cta::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-accent to-secondary opacity-0 transition-opacity duration-300;
+  }
+  .btn-cta:hover::before {
+    @apply opacity-20;
   }
 
   /* Form Elements */
@@ -234,6 +256,84 @@ body {
   }
   .card-glow {
     @apply card hover:shadow-glow;
+  }
+
+  /* Grid System Utilities */
+  .grid-center {
+    @apply grid place-items-center;
+  }
+  .grid-start {
+    @apply grid place-items-start;
+  }
+  .grid-end {
+    @apply grid place-items-end;
+  }
+
+  /* Text Alignment Utilities */
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Consistent spacing system */
+  .section-padding {
+    @apply px-4 py-8 sm:px-6 sm:py-12 lg:px-8 lg:py-16;
+  }
+  .content-width {
+    @apply max-w-7xl mx-auto;
+  }
+  .content-width-narrow {
+    @apply max-w-4xl mx-auto;
+  }
+
+  /* Enhanced Responsive Utilities */
+  .responsive-grid {
+    @apply grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+  .responsive-flex {
+    @apply flex flex-col gap-4 sm:flex-row sm:items-center;
+  }
+  .responsive-text {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+  .responsive-heading {
+    @apply text-xl sm:text-2xl lg:text-3xl xl:text-4xl;
+  }
+
+  /* Mobile-first touch targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Responsive containers */
+  .container-mobile {
+    @apply px-4 mx-auto max-w-sm;
+  }
+  .container-tablet {
+    @apply px-6 mx-auto max-w-4xl;
+  }
+  .container-desktop {
+    @apply px-8 mx-auto max-w-7xl;
+  }
+
+  /* Viewport-specific utilities */
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+  .tablet-only {
+    @apply hidden sm:block lg:hidden;
+  }
+  .desktop-only {
+    @apply hidden lg:block;
+  }
+  .mobile-tablet {
+    @apply block lg:hidden;
+  }
+  .tablet-desktop {
+    @apply hidden sm:block;
   }
 
   /* Background Gradients */
@@ -264,12 +364,33 @@ body {
 
 /* Accessibility Improvements */
 @layer utilities {
-  /* Focus styles for better accessibility */
+  /* Enhanced Focus styles for better accessibility */
   .focus-visible:focus-visible {
     @apply outline-2 outline-offset-2 outline-accent;
   }
 
+  /* Focus styles for interactive elements */
+  button:focus-visible,
+  a:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  [tabindex]:focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent;
+    outline-style: solid;
+  }
 
+  /* Enhanced focus for cards and interactive containers */
+  .card:focus-visible,
+  .btn:focus-visible {
+    @apply outline-2 outline-offset-2 outline-accent ring-2 ring-accent/30;
+  }
+
+  /* Skip link styles */
+  .skip-link {
+    @apply absolute -top-10 left-4 z-50 bg-accent text-dark px-4 py-2 rounded-md font-medium;
+    @apply focus:top-4 transition-all duration-200;
+  }
 
   /* Screen reader only content */
   .sr-only {
@@ -284,6 +405,28 @@ body {
     border: 0;
   }
 
+  /* Screen reader content that becomes visible on focus */
+  .sr-only-focusable:focus {
+    position: static;
+    width: auto;
+    height: auto;
+    padding: inherit;
+    margin: inherit;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+
+  /* ARIA live regions */
+  .live-region {
+    @apply sr-only;
+  }
+
+  /* Keyboard navigation helpers */
+  .keyboard-only {
+    @apply sr-only focus:not-sr-only focus:absolute focus:z-50;
+  }
+
   /* High contrast mode support */
   @media (prefers-contrast: high) {
     .h1, .h2, .h3, .h4, .h5, .h6 {
@@ -291,6 +434,15 @@ body {
     }
     .card {
       border-color: #FFFFFF !important;
+    }
+    .btn {
+      border: 2px solid #FFFFFF !important;
+    }
+    .focus-visible:focus-visible,
+    button:focus-visible,
+    a:focus-visible {
+      outline: 3px solid #FFFFFF !important;
+      outline-offset: 2px !important;
     }
   }
 

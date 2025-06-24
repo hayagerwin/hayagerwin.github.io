@@ -1,10 +1,5 @@
 "use client";
-// icons
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Pagination } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/pagination";
+import { useState, useEffect } from "react";
 import {
   RiAppsLine,
   RiComputerLine,
@@ -50,45 +45,70 @@ const serviceData = [
 ];
 
 const ServiceSlider = () => {
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
+
   return (
-    <Swiper
-      breakpoints={{
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 15,
-        },
-        640: {
-          slidesPerView: 3,
-          spaceBetween: 15,
-        },
-      }}
-      freeMode={true}
-      pagination={{
-        clickable: true,
-      }}
-      modules={[FreeMode, Pagination]}
-      className="h-[400px] sm:h-[450px]"
+    <div
+      className="w-full"
+      role="region"
+      aria-label="Services offered"
     >
-      {serviceData.map((item, index) => {
-        return (
-          <SwiperSlide key={index}>
-            <div className="card-glow group flex cursor-pointer flex-col h-full justify-between">
+      {/* Mobile: Stack vertically, Desktop: Grid layout */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 h-auto">
+        {serviceData.map((item, index) => {
+          return (
+            <div
+              key={index}
+              className={`card-glow group flex cursor-pointer flex-col h-full justify-between min-h-[350px] ${
+                prefersReducedMotion ? '' : 'animate-fade-in-up'
+              }`}
+              style={{
+                animationDelay: prefersReducedMotion ? '0s' : `${index * 0.1}s`
+              }}
+              tabIndex={0}
+              role="article"
+              aria-labelledby={`service-title-${index}`}
+            >
               {/* Icon */}
-              <div className="mb-4 text-5xl text-accent group-hover:scale-110 transition-transform duration-300">{item.icon}</div>
+              <div className={`mb-4 text-5xl text-accent ${
+                prefersReducedMotion ? '' : 'group-hover:scale-110 transition-transform duration-300'
+              }`} aria-hidden="true">
+                {item.icon}
+              </div>
 
               {/* Content */}
               <div className="flex-1">
-                <h3 className="h5 mb-3 group-hover:text-accent transition-colors duration-300">{item.title}</h3>
+                <h3
+                  id={`service-title-${index}`}
+                  className={`h5 mb-3 ${
+                    prefersReducedMotion ? '' : 'group-hover:text-accent transition-colors duration-300'
+                  }`}
+                >
+                  {item.title}
+                </h3>
                 <p className="text-text-secondary leading-relaxed mb-4">
                   {item.description}
                 </p>
 
                 {/* Technologies */}
-                <div className="flex flex-wrap gap-1 mb-4">
+                <div className="flex flex-wrap gap-1 mb-4" role="list" aria-label="Technologies used">
                   {item.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
                       className="bg-accent/10 text-accent px-2 py-1 rounded text-xs font-medium"
+                      role="listitem"
                     >
                       {tech}
                     </span>
@@ -98,13 +118,20 @@ const ServiceSlider = () => {
 
               {/* Arrow */}
               <div className="flex justify-end">
-                <RxArrowTopRight className="text-2xl text-text-muted group-hover:text-accent group-hover:rotate-45 group-hover:scale-125 transition-all duration-300" />
+                <RxArrowTopRight
+                  className={`text-2xl text-text-muted ${
+                    prefersReducedMotion
+                      ? 'group-hover:text-accent'
+                      : 'group-hover:text-accent group-hover:rotate-45 group-hover:scale-125 transition-all duration-300'
+                  }`}
+                  aria-hidden="true"
+                />
               </div>
             </div>
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+          );
+        })}
+      </div>
+    </div>
   );
 };
 

@@ -10,17 +10,20 @@ const Home = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError] = useState(false);
 
-  // Dynamic typewriter data
+  // Enhanced dynamic typewriter data with more engaging phrases
   const typewriterPhrases = [
     "Code",
     "Reality",
     "Innovation",
     "Solutions",
-    "Experience"
+    "Experience",
+    "Success",
+    "Excellence",
+    "Impact"
   ];
   const baseText = "From Concept to ";
 
-  const subtitleText = "Crafting Digital Excellence with Modern Web Technologies";
+  const subtitleText = "Transforming Ideas into Powerful Digital Experiences with Modern Web Technologies";
 
   useEffect(() => {
     // Simulate loading time for animations to initialize
@@ -55,6 +58,21 @@ const Home = () => {
         role="main"
         aria-label="Welcome page - Erwin Hayag Portfolio"
       >
+        {/* Skip Links for Accessibility */}
+        <div className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50">
+          <a
+            href="#main-content"
+            className="btn-primary text-sm px-4 py-2 rounded-md focus:outline-none focus:ring-2 focus:ring-accent/50"
+          >
+            Skip to Main Content
+          </a>
+          <a
+            href="#portfolio-navigation"
+            className="btn-secondary text-sm px-4 py-2 rounded-md ml-2 focus:outline-none focus:ring-2 focus:ring-accent/50"
+          >
+            Skip to Portfolio Navigation
+          </a>
+        </div>
         {isLoading ? (
           <div className="flex items-center justify-center">
             <LoadingSpinner
@@ -74,7 +92,11 @@ const Home = () => {
             </div>
 
             {/* Main Content Container */}
-            <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div
+              id="main-content"
+              className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+              tabIndex={-1}
+            >
               <div className="text-center space-y-6 sm:space-y-8 md:space-y-10">
                 {/* Main Title with Dynamic Typewriter Effect */}
                 <div className="space-y-4 sm:space-y-6">
@@ -140,9 +162,11 @@ const Home = () => {
                   initial="hidden"
                   animate="show"
                   exit="hidden"
+                  id="portfolio-navigation"
                   className="pt-6 sm:pt-8 flex justify-center"
                   role="region"
                   aria-label="Portfolio navigation"
+                  tabIndex={-1}
                 >
                   <Suspense fallback={
                     <div className="h-48 flex items-center justify-center">

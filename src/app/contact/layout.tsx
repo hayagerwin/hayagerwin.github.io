@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contact - Let's Work Together on Your Next Project",
-  description: "Get in touch with Erwin Hayag for your web development needs. Available for freelance projects, consultations, and collaborations. Fast response time and professional service guaranteed.",
+  title: "Contact - Actively Seeking Full-Time Employment Opportunities",
+  description: "Contact Erwin Hayag directly via WhatsApp (+639765382859) or email (hayagerwin85@gmail.com). Actively seeking full-time employment opportunities - remote work globally or on-site positions in Metro Manila. Also available for freelance projects and consulting.",
   openGraph: {
-    title: "Contact Erwin Hayag - Web Development Services",
-    description: "Ready to start your next web project? Contact me for professional web development services and consultations.",
+    title: "Contact Erwin Hayag - Seeking Full-Time Web Development Positions",
+    description: "Get in touch directly for full-time employment opportunities. Actively seeking permanent positions - remote work globally or on-site in Metro Manila area. Also available for freelance and consulting work.",
     url: "https://hayagerwin.github.io/contact",
   },
 };

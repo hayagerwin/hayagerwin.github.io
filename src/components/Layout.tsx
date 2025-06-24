@@ -1,6 +1,6 @@
 "use client";
 import { Poppins } from "next/font/google";
-import { Header, Nav, TopLeftImg } from "@/components";
+import { Header, Nav } from "@/components";
 import ErrorBoundary from "./ErrorBoundary";
 
 const poppins = Poppins({
@@ -18,9 +18,6 @@ const Layout = ({
     <div
       className={`page bg-site bg-cover bg-no-repeat text-white ${poppins.variable} relative bg-fixed font-poppins`}
     >
-      {/* Background decorative elements */}
-      <TopLeftImg />
-
       {/* Navigation */}
       <Nav />
 

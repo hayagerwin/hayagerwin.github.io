@@ -19,10 +19,7 @@ export { default as LazyProjectDetail } from "./LazyProjectDetail";
 export { default as ProjectsBtn } from "./ProjectsBtn";
 export { default as ServiceSlider } from "./ServiceSlider";
 export { default as Socials } from "./Socials";
-export { default as TestimonialSlider } from "./TestimonialSlider";
-export { default as TopLeftImg } from "./TopLeftImg";
 export { default as Transition } from "./Transition";
-export { default as WorkSlider } from "./WorkSlider";
 
 // UI Components
 export { TextGenerateEffect } from "./ui/text-generate-effect";
