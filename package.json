@@ -10,6 +10,7 @@
     "serve": "npx serve@latest out"
   },
   "dependencies": {
+    "@tailwindcss/line-clamp": "^0.4.4",
     "clsx": "^2.1.1",
     "framer-motion": "^11.0.18",
     "motion": "^12.18.1",

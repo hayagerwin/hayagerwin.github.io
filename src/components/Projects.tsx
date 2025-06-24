@@ -3,144 +3,194 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/variants";
+import { FaExternalLinkAlt, FaCode } from "react-icons/fa";
 import { FaAnglesRight } from "react-icons/fa6";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { projectData } from "@/data/projects";
 
 const Projects = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
   return (
     <section
-      className="z-30 flex h-full w-full flex-col-reverse items-center justify-center px-4 pt-16 sm:pt-20 lg:flex-row lg:pt-32 xl:overflow-hidden"
+      className="z-30 flex h-screen w-full items-center justify-center"
       aria-label="Featured projects showcase"
     >
-      {/* LEFT */}
-      <div className="relative bottom-0 left-0 hidden h-full w-full xl:block">
-        {/* Image Group */}
-        {projectData.map((project, index) => (
+      {/* Two-column layout container */}
+      <div className="flex h-full w-full max-w-7xl mx-auto">
+
+        {/* LEFT COLUMN - Project Showcase Image */}
+        <div className="relative hidden lg:flex lg:w-1/2 items-center justify-center p-8">
+          <div className="relative w-full h-3/4 max-w-lg overflow-hidden rounded-2xl shadow-2xl">
+            {projectData.map((project, index) => (
+              <motion.div
+                key={index}
+                className="absolute inset-0"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{
+                  opacity: hoveredIndex === index ? 1 : 0,
+                  scale: hoveredIndex === index ? 1 : 0.95,
+                }}
+                transition={{
+                  duration: prefersReducedMotion ? 0 : 0.5,
+                  ease: "easeInOut"
+                }}
+              >
+                <Image
+                  src={project.cover}
+                  alt={`${project.title} project preview`}
+                  width={800}
+                  height={600}
+                  className="h-full w-full object-cover"
+                  priority={index === 0}
+                />
+                {/* Overlay with project status */}
+                <div className="absolute top-4 right-4">
+                  <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm ${
+                    project.status === 'deployed' ? 'bg-green-500/20 text-green-300 border border-green-500/30' :
+                    project.status === 'in-development' ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/30' :
+                    'bg-blue-500/20 text-blue-300 border border-blue-500/30'
+                  }`}>
+                    <span className={`w-2 h-2 rounded-full ${
+                      project.status === 'deployed' ? 'bg-green-400' :
+                      project.status === 'in-development' ? 'bg-yellow-400' :
+                      'bg-blue-400'
+                    }`}></span>
+                    {project.status.replace('-', ' ')}
+                  </span>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        {/* RIGHT COLUMN - Project List */}
+        <div className="flex flex-col justify-center w-full lg:w-1/2 p-8 lg:pl-12">
           <motion.div
-            variants={fadeIn("right", 0.2)}
+            variants={fadeIn("left", 0.2)}
             initial="hidden"
             animate="show"
             exit="hidden"
-            key={index}
-            className={`absolute h-full w-full overflow-hidden rounded-tr-3xl`}
+            className="mb-8"
           >
-            <motion.div
-              initial={{ scale: 1, opacity: 0 }}
-              animate={{
-                scale: hoveredIndex === index ? 1.1 : 1,
-                opacity: hoveredIndex === index ? 1 : 0,
-              }}
-              transition={{ duration: 0.4 }}
-              className="relative h-full w-full"
-            >
-              <Image
-                src={project.cover}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover"
-                width={1920}
-                height={1080}
-              />
-            </motion.div>
+            <div className="flex items-baseline justify-between mb-2">
+              <div>
+                <h2 className="h2 m-0 text-left text-text-primary">
+                  Featured Projects
+                </h2>
+                <p className="text-text-muted mt-2 text-base">Showcasing innovative web solutions</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-accent text-2xl font-bold">{projectData.length}</span>
+                <span className="text-text-muted text-sm">Projects</span>
+              </div>
+            </div>
+            <div className="w-16 h-1 bg-accent rounded-full mt-4"></div>
           </motion.div>
-        ))}
-      </div>
-      {/* RIGHT */}
-      <div className="h-full w-full flex-col px-4 sm:px-6 lg:px-32">
-        <motion.div
-          variants={fadeIn("left", 0.2)}
-          initial="hidden"
-          animate="show"
-          exit="hidden"
-        >
-          <div className="flex items-baseline justify-between">
-            <div>
-              <h2 className="h3 m-0 text-left">
-                Featured Projects
-              </h2>
-              <p className="text-text-muted mt-1 text-sm">Showcasing my latest work</p>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-accent text-xl font-bold">{projectData.length}</span>
-              <span className="text-text-muted text-xs">Projects</span>
-            </div>
-          </div>
-          <hr className="border-accent/30 my-4" />
-        </motion.div>
-        <ul
-          className="h-auto lg:h-full"
-          role="list"
-          aria-label="Project list"
-        >
-          {projectData.map((project, index) => (
-            <motion.li
-              key={index}
-              variants={fadeIn("left", 0.2 + index * 0.1)}
-              initial="hidden"
-              animate="show"
-              exit="hidden"
-              role="listitem"
-            >
-              <div
-                className="group flex items-center rounded-xl p-3 sm:p-4 transition-all duration-300 hover:bg-dark-secondary/30 active:bg-dark-secondary/50"
+          <div className="space-y-6">
+            {projectData.map((project, index) => (
+              <motion.div
+                key={index}
+                variants={fadeIn("left", 0.2 + index * 0.1)}
+                initial="hidden"
+                animate="show"
+                exit="hidden"
+                className="group"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onTouchStart={() => setHoveredIndex(index)}
-                // onMouseLeave={() => setHoveredIndex(-1)}
+                onFocus={() => setHoveredIndex(index)}
               >
-                <motion.div
-                  initial={{ x: -35, opacity: 0 }}
-                  animate={{
-                    x: hoveredIndex === index ? 0 : -35,
-                    opacity: hoveredIndex === index ? 1 : 0,
-                  }}
-                  transition={{ duration: 0.4 }}
-                >
-                  <FaAnglesRight />
-                </motion.div>
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="w-full focus-visible rounded-lg"
+                  className="block p-6 rounded-2xl border border-dark-secondary/30 bg-dark-secondary/10 backdrop-blur-sm transition-all duration-300 hover:border-accent/30 hover:bg-dark-secondary/20 hover:shadow-glow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-dark"
                   aria-label={`View ${project.title} project details`}
                 >
-                  <div className="flex w-full flex-col justify-between py-3 sm:py-4 sm:flex-row sm:items-center">
+                  <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
-                      <motion.h4
-                        initial={{ x: -15 }}
-                        animate={{ x: hoveredIndex === index ? 10 : -15 }}
-                        transition={{ duration: 0.3 }}
-                        className="text-base font-bold text-text-primary sm:text-lg lg:text-xl xl:text-2xl mb-1"
-                      >
-                        {project.title}
-                      </motion.h4>
-                      <p className="text-xs sm:text-sm text-text-muted mb-2 sm:mb-0">
+                      <div className="flex items-center gap-3 mb-2">
+                        <motion.div
+                          initial={{ x: -10, opacity: 0 }}
+                          animate={{
+                            x: hoveredIndex === index ? 0 : -10,
+                            opacity: hoveredIndex === index ? 1 : 0,
+                          }}
+                          transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
+                          className="text-accent"
+                        >
+                          <FaAnglesRight />
+                        </motion.div>
+                        <h3 className="text-xl font-bold text-text-primary group-hover:text-accent transition-colors duration-300">
+                          {project.title}
+                        </h3>
+                      </div>
+                      <p className="text-sm text-text-muted mb-3">
                         {project.category}
                       </p>
-                      <div className="flex items-center gap-2 mb-2 sm:mb-0">
-                        <span className={`inline-block w-2 h-2 rounded-full ${
-                          project.status === 'deployed' ? 'bg-success' :
-                          project.status === 'in-development' ? 'bg-warning' :
-                          'bg-accent'
-                        }`}></span>
-                        <span className="text-xs text-text-muted capitalize">
-                          {project.status.replace('-', ' ')}
-                        </span>
-                        {project.liveUrl && (
-                          <span className="text-xs text-success ml-2">• Live Demo</span>
-                        )}
-                      </div>
+                      <p className="text-sm text-text-secondary leading-relaxed mb-4 line-clamp-2">
+                        {project.description.overview}
+                      </p>
                     </div>
-                    <div className="flex flex-col items-start sm:items-end">
+                    <div className="flex flex-col items-end gap-2 ml-4">
                       <span className="text-sm text-accent font-medium">
                         {project.year}
                       </span>
+                      <span className={`inline-flex items-center gap-2 px-2 py-1 rounded-full text-xs font-medium ${
+                        project.status === 'deployed' ? 'bg-green-500/20 text-green-300' :
+                        project.status === 'in-development' ? 'bg-yellow-500/20 text-yellow-300' :
+                        'bg-blue-500/20 text-blue-300'
+                      }`}>
+                        <span className={`w-1.5 h-1.5 rounded-full ${
+                          project.status === 'deployed' ? 'bg-green-400' :
+                          project.status === 'in-development' ? 'bg-yellow-400' :
+                          'bg-blue-400'
+                        }`}></span>
+                        {project.status.replace('-', ' ')}
+                      </span>
                     </div>
                   </div>
+
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="flex items-center gap-2">
+                        <FaCode className="text-accent text-sm" />
+                        <span className="text-xs text-text-muted">
+                          {project.technologies.frontend.slice(0, 2).join(', ')}
+                          {project.technologies.frontend.length > 2 && ` +${project.technologies.frontend.length - 2}`}
+                        </span>
+                      </div>
+                      {project.liveUrl && (
+                        <div className="flex items-center gap-2">
+                          <FaExternalLinkAlt className="text-success text-sm" />
+                          <span className="text-xs text-success">Live Demo</span>
+                        </div>
+                      )}
+                    </div>
+                    <motion.div
+                      initial={{ x: 0 }}
+                      animate={{ x: hoveredIndex === index ? 5 : 0 }}
+                      transition={{ duration: prefersReducedMotion ? 0 : 0.3 }}
+                      className="text-accent"
+                    >
+                      <FaAnglesRight />
+                    </motion.div>
+                  </div>
                 </Link>
-              </div>
-            </motion.li>
-          ))}
-        </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

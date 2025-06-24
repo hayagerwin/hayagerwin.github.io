@@ -3,17 +3,14 @@ import Link from "next/link";
 import Socials from "./Socials";
 import { motion } from "framer-motion";
 import { fadeIn } from "@/utils/variants";
-import { useContext } from "react";
-import { LayoutRouterContext } from "next/dist/shared/lib/app-router-context.shared-runtime";
+
 
 const Header = () => {
-  const frozenContext = useContext(LayoutRouterContext)?.url ?? "/";
-  const isProjectsRoute = frozenContext.startsWith("/projects/");
   return (
     <motion.header
       variants={fadeIn("down", 0.2)}
       initial="hidden"
-      animate={isProjectsRoute ? "hidden" : "show"}
+      animate="show"
       exit="hidden"
       className="absolute z-30 flex w-full items-center px-8 xl:h-[70px] xl:px-0"
       role="banner"

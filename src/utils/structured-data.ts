@@ -16,7 +16,12 @@ export function generateProjectStructuredData(project: Project) {
     },
     dateCreated: project.year.toString(),
     genre: project.category,
-    keywords: project.technologies.join(", "),
+    keywords: [
+      ...project.technologies.frontend,
+      ...project.technologies.backend,
+      ...project.technologies.database,
+      ...project.technologies.tools
+    ].join(", "),
     ...(project.liveUrl && {
       sameAs: [project.liveUrl]
     }),
